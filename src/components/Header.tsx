@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Globe, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/Logo";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState("EN");
   const location = useLocation();
 
   const navigation = [
@@ -21,13 +14,6 @@ const Header = () => {
     { name: "Areas", href: "/areas" },
     { name: "About Us", href: "/about" },
     { name: "Contact", href: "/contact" },
-  ];
-
-  const languages = [
-    { code: "EN", name: "English", flag: "🇺🇸" },
-    { code: "AR", name: "العربية", flag: "🇸🇦" },
-    { code: "FR", name: "Français", flag: "🇫🇷" },
-    { code: "DE", name: "Deutsch", flag: "🇩🇪" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -99,55 +85,8 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Right side with Language Selector and Get Started Button */}
+          {/* Right side with Get Started Button */}
           <div className="flex items-center space-x-3">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <div className="relative group">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="hidden md:flex border-gray-200 hover:border-blue-400 transition-all duration-300 ease-out group px-3 py-2 h-8 relative overflow-hidden bg-white hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50"
-                  >
-                    <Globe className="w-4 h-4 mr-1 text-gray-600 group-hover:text-blue-600 transition-colors duration-300 ease-out" />
-                    <span className="text-gray-700 group-hover:text-blue-600 transition-colors duration-300 ease-out text-sm">
-                      {currentLang}
-                    </span>
-                  </Button>
-
-                  {/* Animated underline effect matching navbar links */}
-                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-3/4 transition-all duration-400 ease-out rounded-full"></div>
-                </div>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="end"
-                className="bg-white border-gray-200 shadow-xl language-selector-dropdown"
-                sideOffset={8}
-                onCloseAutoFocus={(event) => event.preventDefault()}
-              >
-                {languages.map((lang) => (
-                  <DropdownMenuItem
-                    key={lang.code}
-                    onClick={() => setCurrentLang(lang.code)}
-                    className="cursor-pointer relative group overflow-hidden px-3 py-2 rounded-lg transition-all duration-300 text-gray-700 hover:text-blue-600 flex items-center justify-center text-center"
-                  >
-                    {/* Hover background effect matching navbar - light gradient only */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
-
-                    {/* Animated border matching navbar */}
-                    <div className="absolute inset-0 border border-transparent group-hover:border-blue-200 transition-colors duration-300 rounded-lg"></div>
-
-                    {/* Bottom accent line matching navbar */}
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-3/4 transition-all duration-400 ease-out rounded-full"></div>
-
-                    <span className="relative z-10 font-medium transition-colors duration-300 group-hover:text-blue-600 w-full text-center">
-                      {lang.name}
-                    </span>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
             {/* Get Started Button - Far Right */}
             <Link to="/get-started" className="hidden lg:block">
               <Button
@@ -201,9 +140,11 @@ const Header = () => {
                       ? "text-white bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg"
                       : "text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:shadow-lg bg-gray-50 hover:bg-transparent"
                   }`}
-                  style={{ 
+                  style={{
                     animationDelay: `${index * 100}ms`,
-                    animation: `fadeInUp 0.6s ease-out forwards ${index * 100}ms both`
+                    animation: `fadeInUp 0.6s ease-out forwards ${
+                      index * 100
+                    }ms both`,
                   }}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -212,46 +153,8 @@ const Header = () => {
               ))}
             </div>
 
-            {/* Bottom Section with Language Selector and Get Started */}
+            {/* Bottom Section with Get Started */}
             <div className="absolute bottom-0 left-0 right-0 px-6 py-6 border-t border-gray-100 bg-white">
-              {/* Language Selector */}
-              <div className="mb-4">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <div className="relative group w-full">
-                      <Button
-                        variant="outline"
-                        size="lg"
-                        className="w-full border-gray-200 hover:border-blue-400 transition-all duration-300 ease-out relative overflow-hidden bg-white hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 py-3"
-                      >
-                        <Globe className="w-5 h-5 mr-2 text-gray-600 group-hover:text-blue-600 transition-colors duration-300 ease-out" />
-                        <span className="text-gray-700 group-hover:text-blue-600 transition-colors duration-300 ease-out">
-                          Language: {currentLang}
-                        </span>
-                      </Button>
-                    </div>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent
-                    className="bg-white border-gray-200 shadow-xl w-full"
-                    sideOffset={8}
-                    onCloseAutoFocus={(event) => event.preventDefault()}
-                  >
-                    {languages.map((lang) => (
-                      <DropdownMenuItem
-                        key={lang.code}
-                        onClick={() => setCurrentLang(lang.code)}
-                        className="cursor-pointer relative group overflow-hidden px-4 py-3 rounded-lg transition-all duration-300 text-gray-700 hover:text-blue-600 flex items-center justify-center text-center"
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
-                        <span className="relative z-10 font-medium transition-colors duration-300 group-hover:text-blue-600 w-full text-center">
-                          {lang.name}
-                        </span>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-
               {/* Get Started Button */}
               <Link to="/get-started" onClick={() => setIsMenuOpen(false)}>
                 <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium px-6 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
@@ -261,8 +164,9 @@ const Header = () => {
             </div>
 
             {/* CSS for animations */}
-            <style dangerouslySetInnerHTML={{
-              __html: `
+            <style
+              dangerouslySetInnerHTML={{
+                __html: `
                 @keyframes fadeInUp {
                   from {
                     opacity: 0;
@@ -273,8 +177,9 @@ const Header = () => {
                     transform: translateY(0);
                   }
                 }
-              `
-            }} />
+              `,
+              }}
+            />
           </div>
         )}
       </div>
