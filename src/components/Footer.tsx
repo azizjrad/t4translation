@@ -144,7 +144,7 @@ const Footer = () => {
                 },
                 {
                   Icon: Mail,
-                  text: "contact@t4translation.com, math.akrem@gmail.com",
+                  text: "contact@t4translation.com",
                   href: "mailto:contact@t4translation.com",
                 },
                 { Icon: Globe, text: "www.t4translation.com", href: "#" },
