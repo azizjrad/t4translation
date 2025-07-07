@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40">
+  <!-- Green background -->
+  <rect width="60" height="40" fill="#006C35"/>
+  
+  <!-- White Arabic calligraphy in the center -->
+  <g fill="white" transform="translate(30, 20)">
+    <!-- Arabic letter representing Arabic language -->
+    <text x="0" y="6" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold">ع</text>
+  </g>
+</svg>
