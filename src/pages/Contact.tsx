@@ -22,6 +22,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { sendContactEmail } from "@/services/emailService";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -54,15 +55,6 @@ const Contact = () => {
       setRetryCount(0);
     }
     return false;
-  };
-
-  // Simulate form submission with random failure for demo
-  const simulateFormSubmission = async (): Promise<boolean> => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(Math.random() > 0.3); // 30% chance of failure for demo
-      }, 2000);
-    });
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -100,60 +92,39 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission
-      const success = await simulateFormSubmission();
+      // Send email using EmailJS
+      await sendContactEmail({
+        name: formData.name,
+        email: formData.email,
+        reason: formData.reason,
+        message: formData.message,
+      });
 
-      if (success) {
-        // Reset retry count on successful submission
-        setRetryCount(0);
+      // Reset retry count on successful submission
+      setRetryCount(0);
 
-        // Show success notification
-        toast({
-          title: "✉️ Message Sent Successfully!",
-          description: `Thank you ${formData.name}! Your ${
-            formData.reason ? formData.reason.toLowerCase() : "message"
-          } has been received. We'll respond to ${
-            formData.email
-          } within 24 hours.`,
-          duration: 5000,
-        });
+      // Show success notification
+      toast({
+        title: "✉️ Message Sent Successfully!",
+        description: `Thank you ${formData.name}! Your ${
+          formData.reason ? formData.reason.toLowerCase() : "message"
+        } has been received. We'll respond to ${
+          formData.email
+        } within 24 hours.`,
+        duration: 5000,
+      });
 
-        console.log("Form submitted:", formData);
+      console.log("Form submitted:", formData);
 
-        // Reset form
-        setFormData({ reason: "", name: "", email: "", message: "" });
-      } else {
-        // Handle submission failure
-        const newRetryCount = retryCount + 1;
-        setRetryCount(newRetryCount);
-
-        if (newRetryCount >= 3) {
-          // Block user for 30 minutes after 3 consecutive failures
-          setIsBlocked(true);
-          setBlockTime(new Date());
-
-          toast({
-            title: "🚫 Multiple Submission Failures",
-            description:
-              "We've detected multiple failed attempts. Please come back in 30 minutes and try again. This helps us maintain system stability.",
-            variant: "destructive",
-            duration: 8000,
-          });
-        } else {
-          toast({
-            title: "❌ Message Send Failed",
-            description: `Sorry, there was an issue sending your message. Please try again. (Attempt ${newRetryCount}/3)`,
-            variant: "destructive",
-            duration: 5000,
-          });
-        }
-      }
+      // Reset form
+      setFormData({ reason: "", name: "", email: "", message: "" });
     } catch (error) {
-      // Handle unexpected errors
+      // Handle submission failure
       const newRetryCount = retryCount + 1;
       setRetryCount(newRetryCount);
 
       if (newRetryCount >= 3) {
+        // Block user for 30 minutes after 3 consecutive failures
         setIsBlocked(true);
         setBlockTime(new Date());
 
@@ -165,9 +136,10 @@ const Contact = () => {
           duration: 8000,
         });
       } else {
+        const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
         toast({
-          title: "❌ Unexpected Error",
-          description: `An unexpected error occurred. Please try again. (Attempt ${newRetryCount}/3)`,
+          title: "❌ Message Send Failed",
+          description: `${errorMessage} Please try again. (Attempt ${newRetryCount}/3)`,
           variant: "destructive",
           duration: 5000,
         });

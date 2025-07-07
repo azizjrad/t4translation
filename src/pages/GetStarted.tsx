@@ -23,6 +23,7 @@ import {
   Upload,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { sendGetStartedEmail } from "@/services/emailService";
 
 const GetStarted = () => {
   const { toast } = useToast();
@@ -76,15 +77,6 @@ const GetStarted = () => {
     return false;
   };
 
-  // Simulate form submission with random failure for demo
-  const simulateFormSubmission = async (): Promise<boolean> => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(Math.random() > 0.3); // 30% chance of failure for demo
-      }, 2000);
-    });
-  };
-
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
@@ -125,70 +117,63 @@ const GetStarted = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission
-      const success = await simulateFormSubmission();
+      // Create message with all form data
+      const projectMessage = `
+Project Details:
+- Status: ${formData.status || 'Not specified'}
+- Areas: ${formData.areas || 'Not specified'}
+- Service: ${formData.service || 'Not specified'}
+- Source Language: ${formData.sourceLanguage || 'Not specified'}
+- Target Language: ${formData.targetLanguage || 'Not specified'}
+- Project Details: ${formData.projectDetails}
+- File Attached: ${formData.file ? formData.file.name : 'No file attached'}
+      `.trim();
 
-      if (success) {
-        // Reset retry count on successful submission
-        setRetryCount(0);
+      // Send email using EmailJS
+      await sendGetStartedEmail({
+        name: formData.name,
+        email: formData.email,
+        projectType: formData.service,
+        sourceLanguage: formData.sourceLanguage,
+        targetLanguage: formData.targetLanguage,
+        message: projectMessage,
+      });
 
-        // Show success notification
-        toast({
-          title: "🎉 Project Request Submitted Successfully!",
-          description: `Thank you ${formData.name}! We'll analyze your ${
-            formData.service || "translation"
-          } requirements and send a detailed quote to ${
-            formData.email
-          } within 2 hours.`,
-          duration: 5000,
-        });
+      // Reset retry count on successful submission
+      setRetryCount(0);
 
-        console.log("Form submitted:", formData);
+      // Show success notification
+      toast({
+        title: "🎉 Project Request Submitted Successfully!",
+        description: `Thank you ${formData.name}! We'll analyze your ${
+          formData.service || "translation"
+        } requirements and send a detailed quote to ${
+          formData.email
+        } within 2 hours.`,
+        duration: 5000,
+      });
 
-        // Reset form after successful submission
-        setFormData({
-          status: "",
-          areas: "",
-          service: "",
-          sourceLanguage: "",
-          targetLanguage: "",
-          name: "",
-          email: "",
-          projectDetails: "",
-          file: null,
-        });
-      } else {
-        // Handle submission failure
-        const newRetryCount = retryCount + 1;
-        setRetryCount(newRetryCount);
+      console.log("Form submitted:", formData);
 
-        if (newRetryCount >= 3) {
-          // Block user for 30 minutes after 3 consecutive failures
-          setIsBlocked(true);
-          setBlockTime(new Date());
-
-          toast({
-            title: "🚫 Multiple Submission Failures",
-            description:
-              "We've detected multiple failed attempts. Please come back in 30 minutes and try again. This helps us maintain system stability.",
-            variant: "destructive",
-            duration: 8000,
-          });
-        } else {
-          toast({
-            title: "❌ Submission Failed",
-            description: `Sorry, there was an issue sending your request. Please try again. (Attempt ${newRetryCount}/3)`,
-            variant: "destructive",
-            duration: 5000,
-          });
-        }
-      }
+      // Reset form after successful submission
+      setFormData({
+        status: "",
+        areas: "",
+        service: "",
+        sourceLanguage: "",
+        targetLanguage: "",
+        name: "",
+        email: "",
+        projectDetails: "",
+        file: null,
+      });
     } catch (error) {
-      // Handle unexpected errors
+      // Handle submission failure
       const newRetryCount = retryCount + 1;
       setRetryCount(newRetryCount);
 
       if (newRetryCount >= 3) {
+        // Block user for 30 minutes after 3 consecutive failures
         setIsBlocked(true);
         setBlockTime(new Date());
 
@@ -200,9 +185,10 @@ const GetStarted = () => {
           duration: 8000,
         });
       } else {
+        const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
         toast({
-          title: "❌ Unexpected Error",
-          description: `An unexpected error occurred. Please try again. (Attempt ${newRetryCount}/3)`,
+          title: "❌ Submission Failed",
+          description: `${errorMessage} Please try again. (Attempt ${newRetryCount}/3)`,
           variant: "destructive",
           duration: 5000,
         });
