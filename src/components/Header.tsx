@@ -174,76 +174,65 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Enhanced Mobile Navigation - Slide from Right */}
+        {/* Enhanced Mobile Navigation - Full Screen Overlay */}
         {isMenuOpen && (
-          <>
-            {/* Backdrop */}
-            <div
-              className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300"
-              onClick={() => setIsMenuOpen(false)}
-            />
+          <div className="md:hidden fixed inset-0 z-50 bg-white">
+            {/* Header with Logo and Close Button */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-100">
+              <Logo size="sm" showText={true} />
+              <Button
+                variant="ghost"
+                size="sm"
+                className="hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300 group p-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <X className="w-6 h-6 group-hover:text-blue-600 transition-colors duration-300" />
+              </Button>
+            </div>
 
-            {/* Side Panel */}
-            <div
-              className={`md:hidden fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white/100 shadow-2xl z-50 transform transition-transform duration-300 ease-out ${
-                isMenuOpen ? "translate-x-0" : "translate-x-full"
-              }`}
-              style={{ backgroundColor: "#ffffff" }}
-            >
-              {/* Header */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-100">
-                <Logo size="sm" showText={true} />
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300 group p-2"
+            {/* Navigation Links - Centered */}
+            <div className="flex flex-col items-center justify-center px-6 py-8 space-y-4 min-h-[60vh]">
+              {navigation.map((item, index) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`w-full max-w-sm text-center px-6 py-4 text-lg font-medium rounded-xl transition-all duration-300 transform hover:scale-105 ${
+                    isActive(item.href)
+                      ? "text-white bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg"
+                      : "text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:shadow-lg bg-gray-50 hover:bg-transparent"
+                  }`}
+                  style={{ 
+                    animationDelay: `${index * 100}ms`,
+                    animation: `fadeInUp 0.6s ease-out forwards ${index * 100}ms both`
+                  }}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <X className="w-5 h-5 group-hover:text-blue-600 transition-colors duration-300" />
-                </Button>
-              </div>
+                  {item.name}
+                </Link>
+              ))}
+            </div>
 
-              {/* Navigation Links */}
-              <div className="px-6 py-4 space-y-2">
-                {navigation.map((item, index) => (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 transform hover:translate-x-2 ${
-                      isActive(item.href)
-                        ? "text-white bg-gradient-to-r from-blue-500 to-purple-600 shadow-md"
-                        : "text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:shadow-md"
-                    }`}
-                    style={{ animationDelay: `${index * 50}ms` }}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-
+            {/* Bottom Section with Language Selector and Get Started */}
+            <div className="absolute bottom-0 left-0 right-0 px-6 py-6 border-t border-gray-100 bg-white">
               {/* Language Selector */}
-              <div className="px-6 py-4 border-t border-gray-100">
+              <div className="mb-4">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <div className="relative group w-full">
                       <Button
                         variant="outline"
-                        size="sm"
-                        className="w-full border-gray-200 hover:border-blue-400 transition-all duration-300 ease-out relative overflow-hidden bg-white hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50"
+                        size="lg"
+                        className="w-full border-gray-200 hover:border-blue-400 transition-all duration-300 ease-out relative overflow-hidden bg-white hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 py-3"
                       >
-                        <Globe className="w-4 h-4 mr-2 text-gray-600 group-hover:text-blue-600 transition-colors duration-300 ease-out" />
+                        <Globe className="w-5 h-5 mr-2 text-gray-600 group-hover:text-blue-600 transition-colors duration-300 ease-out" />
                         <span className="text-gray-700 group-hover:text-blue-600 transition-colors duration-300 ease-out">
-                          {currentLang}
+                          Language: {currentLang}
                         </span>
                       </Button>
-
-                      {/* Animated underline effect for mobile */}
-                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-3/4 transition-all duration-400 ease-out rounded-full"></div>
                     </div>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
-                    className="bg-white border-gray-200 shadow-xl language-selector-dropdown"
+                    className="bg-white border-gray-200 shadow-xl w-full"
                     sideOffset={8}
                     onCloseAutoFocus={(event) => event.preventDefault()}
                   >
@@ -251,17 +240,9 @@ const Header = () => {
                       <DropdownMenuItem
                         key={lang.code}
                         onClick={() => setCurrentLang(lang.code)}
-                        className="cursor-pointer relative group overflow-hidden px-3 py-2 rounded-lg transition-all duration-300 text-gray-700 hover:text-blue-600 flex items-center justify-center text-center"
+                        className="cursor-pointer relative group overflow-hidden px-4 py-3 rounded-lg transition-all duration-300 text-gray-700 hover:text-blue-600 flex items-center justify-center text-center"
                       >
-                        {/* Hover background effect matching navbar - light gradient only */}
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
-
-                        {/* Animated border matching navbar */}
-                        <div className="absolute inset-0 border border-transparent group-hover:border-blue-200 transition-colors duration-300 rounded-lg"></div>
-
-                        {/* Bottom accent line matching navbar */}
-                        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-3/4 transition-all duration-400 ease-out rounded-full"></div>
-
                         <span className="relative z-10 font-medium transition-colors duration-300 group-hover:text-blue-600 w-full text-center">
                           {lang.name}
                         </span>
@@ -272,15 +253,29 @@ const Header = () => {
               </div>
 
               {/* Get Started Button */}
-              <div className="px-6 py-4">
-                <Link to="/get-started" onClick={() => setIsMenuOpen(false)}>
-                  <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                    Get Started
-                  </Button>
-                </Link>
-              </div>
+              <Link to="/get-started" onClick={() => setIsMenuOpen(false)}>
+                <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium px-6 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                  Get Started
+                </Button>
+              </Link>
             </div>
-          </>
+
+            {/* CSS for animations */}
+            <style dangerouslySetInnerHTML={{
+              __html: `
+                @keyframes fadeInUp {
+                  from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                  }
+                  to {
+                    opacity: 1;
+                    transform: translateY(0);
+                  }
+                }
+              `
+            }} />
+          </div>
         )}
       </div>
     </header>
