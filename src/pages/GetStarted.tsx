@@ -120,13 +120,13 @@ const GetStarted = () => {
       // Create message with all form data
       const projectMessage = `
 Project Details:
-- Status: ${formData.status || 'Not specified'}
-- Areas: ${formData.areas || 'Not specified'}
-- Service: ${formData.service || 'Not specified'}
-- Source Language: ${formData.sourceLanguage || 'Not specified'}
-- Target Language: ${formData.targetLanguage || 'Not specified'}
+- Status: ${formData.status || "Not specified"}
+- Areas: ${formData.areas || "Not specified"}
+- Service: ${formData.service || "Not specified"}
+- Source Language: ${formData.sourceLanguage || "Not specified"}
+- Target Language: ${formData.targetLanguage || "Not specified"}
 - Project Details: ${formData.projectDetails}
-- File Attached: ${formData.file ? formData.file.name : 'No file attached'}
+- File Attached: ${formData.file ? formData.file.name : "No file attached"}
       `.trim();
 
       // Send email using EmailJS
@@ -185,7 +185,8 @@ Project Details:
           duration: 8000,
         });
       } else {
-        const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+        const errorMessage =
+          error instanceof Error ? error.message : "Unknown error occurred";
         toast({
           title: "❌ Submission Failed",
           description: `${errorMessage} Please try again. (Attempt ${newRetryCount}/3)`,

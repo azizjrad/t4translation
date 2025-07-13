@@ -136,7 +136,8 @@ const Contact = () => {
           duration: 8000,
         });
       } else {
-        const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+        const errorMessage =
+          error instanceof Error ? error.message : "Unknown error occurred";
         toast({
           title: "❌ Message Send Failed",
           description: `${errorMessage} Please try again. (Attempt ${newRetryCount}/3)`,
