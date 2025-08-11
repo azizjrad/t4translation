@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
@@ -21,85 +22,69 @@ import {
 } from "lucide-react";
 
 const Areas = () => {
-  const industries = [
+  const { t } = useTranslation();
+
+  const getIndustries = () => [
     {
       icon: Building2,
-      title: "Government Translation",
-      description:
-        "We offer translation services to government entities and institutions. Our team ensures accurate, nuanced and culturally-sensitive communication. We handle official documents, agreements, contracts, decrees, policies, and all legal and political texts with care. We assist government agencies in effectively reaching out to their diverse populations.",
-      features: [
-        "Official Documents",
-        "Diplomatic Translation",
-        "Policy Documentation",
-        "Multilingual Support",
-      ],
+      title: t("areas.industries.government.title"),
+      description: t("areas.industries.government.description"),
+      features: t("areas.industries.government.features", {
+        returnObjects: true,
+      }) as string[],
       color: "from-pink-500 to-rose-500",
       bgColor: "from-pink-50 to-rose-50",
     },
     {
       icon: Monitor,
-      title: "Organization Translation",
-      description:
-        "We offer precise and contextually relevant translations for internal communications, reports, training manuals, etc. We help government organizations and non-government orgs. maintain consistent, accurate, and clear messaging across languages, fostering clear and effective communication within the global context.",
-      features: [
-        "Internal Communications",
-        "Training Materials",
-        "Report Translation",
-        "Organizational Content",
-      ],
+      title: t("areas.industries.organization.title"),
+      description: t("areas.industries.organization.description"),
+      features: t("areas.industries.organization.features", {
+        returnObjects: true,
+      }) as string[],
       color: "from-purple-500 to-violet-500",
       bgColor: "from-purple-50 to-violet-50",
     },
     {
       icon: GraduationCap,
-      title: "Education Translation",
-      description:
-        "Our team of qualified translators and linguists specialize in translating academic materials, textbooks, surveys, research papers, theses, and educational material. We ensure that educational content is accurately conveyed across languages, supporting students, educators, and institutions in a global learning environment.",
-      features: [
-        "Academic Materials",
-        "Research Papers",
-        "Educational Content",
-        "Global Learning",
-      ],
+      title: t("areas.industries.education.title"),
+      description: t("areas.industries.education.description"),
+      features: t("areas.industries.education.features", {
+        returnObjects: true,
+      }) as string[],
       color: "from-orange-500 to-amber-500",
       bgColor: "from-orange-50 to-amber-50",
     },
     {
       icon: Radio,
-      title: "Media Translation",
-      description:
-        "Our Media translation services deliver accurate and culturally-nuanced translations for press releases, news articles and reports, multimedia content, and social media. We help media outlets and content creators reach a diverse audience while maintaining the original message's impact and tone.",
-      features: [
-        "Press Releases",
-        "News Articles",
-        "Multimedia Content",
-        "Social Media",
-      ],
+      title: t("areas.industries.media.title"),
+      description: t("areas.industries.media.description"),
+      features: t("areas.industries.media.features", {
+        returnObjects: true,
+      }) as string[],
       color: "from-red-500 to-pink-500",
       bgColor: "from-red-50 to-pink-50",
     },
     {
       icon: Scale,
-      title: "Legal and Business Translation",
-      description:
-        "Our Legal and Business translation services offer accurate and reliable translations for contracts, legal documents, agreements, MOUs, and all corporate communications. We ensure that your legal and business content is accurately translated, safeguarding your interests across international borders.",
-      features: [
-        "Legal Documents",
-        "Business Contracts",
-        "Corporate Communications",
-        "International Compliance",
-      ],
+      title: t("areas.industries.legal.title"),
+      description: t("areas.industries.legal.description"),
+      features: t("areas.industries.legal.features", {
+        returnObjects: true,
+      }) as string[],
       color: "from-emerald-500 to-green-500",
       bgColor: "from-emerald-50 to-green-50",
     },
   ];
 
+  const industries = getIndustries();
+
   return (
     <>
       <SEO
-        title="Translation Service Areas - T4Translation | Specialized Industry Solutions"
-        description="Explore T4Translation's specialized translation services across government, education, media, legal, and business sectors. Expert linguists for every industry need."
-        keywords="government translation, legal translation, business translation, education translation, media translation, industry translation services, specialized translation, sector-specific translation"
+        title={t("seo.areas.title")}
+        description={t("seo.areas.description")}
+        keywords={t("seo.areas.keywords")}
         canonicalUrl="https://t4translation.com/areas"
       />
       <Layout>
@@ -118,21 +103,17 @@ const Areas = () => {
             <div className="text-center space-y-8 animate-fade-in-up">
               <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm text-lg font-medium">
                 <Globe className="w-5 h-5 mr-2" />
-                Specialized Industry Expertise
+                {t("areas.hero.badge")}
               </div>
 
               <h1 className="text-5xl md:text-7xl font-bold leading-tight">
                 <span className="bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-                  Industries We Serve
+                  {t("areas.hero.title")}
                 </span>
               </h1>
 
               <p className="text-xl md:text-2xl text-blue-100 leading-relaxed max-w-4xl mx-auto">
-                Our Government translation services ensure accurate and
-                culturally sensitive communication across official documents,
-                policies, and legal texts. We assist government agencies in
-                effectively reaching diverse populations, ensuring compliance
-                and clarity in all official languages
+                {t("areas.hero.subtitle")}
               </p>
 
               <div className="flex justify-center mt-10">
@@ -148,7 +129,7 @@ const Areas = () => {
                   aria-label="Scroll to areas"
                 >
                   <div className="text-white/80 text-sm font-medium group-hover:text-white transition-colors duration-300">
-                    Explore Our Areas
+                    {t("areas.hero.scrollText")}
                   </div>
                   <div className="relative">
                     <ArrowRight
@@ -186,12 +167,10 @@ const Areas = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Our Translation Areas
+                {t("areas.grid.title")}
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-                From government communications to educational content, we
-                provide specialized translation services tailored to each
-                industry's unique requirements
+                {t("areas.grid.subtitle")}
               </p>
             </div>
 
@@ -276,7 +255,7 @@ const Areas = () => {
                               variant="outline"
                               className="group/btn border-2 hover:border-transparent hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white transition-all duration-300"
                             >
-                              <span>Learn More</span>
+                              <span>{t("areas.grid.learnMore")}</span>
                               <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300" />
                             </Button>
                           </div>
@@ -296,11 +275,10 @@ const Areas = () => {
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                Industry-Specific Expertise
+                {t("areas.expertise.title")}
               </h2>
               <p className="text-xl opacity-90 max-w-3xl mx-auto">
-                Deep knowledge and specialized skills for accurate,
-                culturally-sensitive translations
+                {t("areas.expertise.subtitle")}
               </p>
             </div>
 
@@ -308,27 +286,31 @@ const Areas = () => {
               {[
                 {
                   icon: Languages,
-                  title: "Terminology Expertise",
-                  description:
-                    "Deep knowledge of industry-specific vocabulary and concepts",
+                  title: t("areas.expertise.features.terminology.title"),
+                  description: t(
+                    "areas.expertise.features.terminology.description"
+                  ),
                 },
                 {
                   icon: Shield,
-                  title: "Regulatory Compliance",
-                  description:
-                    "Understanding of industry regulations and compliance requirements",
+                  title: t("areas.expertise.features.compliance.title"),
+                  description: t(
+                    "areas.expertise.features.compliance.description"
+                  ),
                 },
                 {
                   icon: Globe,
-                  title: "Cultural Sensitivity",
-                  description:
-                    "Adaptation to cultural norms and market-specific preferences",
+                  title: t("areas.expertise.features.cultural.title"),
+                  description: t(
+                    "areas.expertise.features.cultural.description"
+                  ),
                 },
                 {
                   icon: Clock,
-                  title: "Quality Assurance",
-                  description:
-                    "Rigorous review processes tailored to each industry's standards",
+                  title: t("areas.expertise.features.quality.title"),
+                  description: t(
+                    "areas.expertise.features.quality.description"
+                  ),
                 },
               ].map((feature, index) => {
                 const IconComponent = feature.icon;
@@ -355,11 +337,10 @@ const Areas = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="animate-fade-in-up">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Ready to Work Together?
+                {t("areas.cta.title")}
               </h2>
               <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-                Let us help you reach your global audience with our specialized
-                industry expertise and professional translation services
+                {t("areas.cta.subtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Link to="/get-started">
@@ -367,7 +348,7 @@ const Areas = () => {
                     size="lg"
                     className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-lg px-10 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border-0"
                   >
-                    Get Started
+                    {t("areas.cta.getStarted")}
                   </Button>
                 </Link>
                 <Link to="/contact">
@@ -376,7 +357,7 @@ const Areas = () => {
                     variant="outline"
                     className="text-lg px-10 py-4 rounded-full border-2 border-gray-300 hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300"
                   >
-                    Contact Us
+                    {t("areas.cta.contactUs")}
                   </Button>
                 </Link>
               </div>

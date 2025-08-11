@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
@@ -13,57 +14,50 @@ import {
 } from "lucide-react";
 
 const About = () => {
+  const { t } = useTranslation();
+
   const teamMembers = [
     {
-      name: "Mathlouthi Akrem",
-      role: "Co-founder & CEO",
+      ...t("about.team.members.akrem", { returnObjects: true }),
       image: "user1.png",
     },
     {
-      name: "Mathlouthi Houssem",
-      role: "Product Manager",
+      ...t("about.team.members.houssem", { returnObjects: true }),
       image: "user2.png",
     },
     {
-      name: "Jrad Aziz",
-      role: "Developer",
+      ...t("about.team.members.aziz", { returnObjects: true }),
       image: "user3.png",
     },
-  ];
+  ] as Array<{
+    name: string;
+    role: string;
+    image: string;
+  }>;
+
+  const valuesData = [
+    t("about.values.excellence", { returnObjects: true }),
+    t("about.values.globalPerspective", { returnObjects: true }),
+    t("about.values.clientFocus", { returnObjects: true }),
+    t("about.values.reliability", { returnObjects: true }),
+  ] as Array<{
+    title: string;
+    description: string;
+  }>;
 
   const values = [
-    {
-      icon: Award,
-      title: "Excellence",
-      description:
-        "Committed to delivering the highest quality translations with meticulous attention to detail and cultural nuance.",
-    },
-    {
-      icon: Globe,
-      title: "Global Perspective",
-      description:
-        "Understanding diverse cultures and markets to provide contextually appropriate linguistic solutions worldwide.",
-    },
-    {
-      icon: Users,
-      title: "Client Focus",
-      description:
-        "Building lasting partnerships through personalized service, transparent communication, and dedicated support.",
-    },
-    {
-      icon: Clock,
-      title: "Reliability",
-      description:
-        "Consistent delivery of projects on time with 24/7 availability for urgent translation requirements.",
-    },
+    { ...valuesData[0], icon: Award },
+    { ...valuesData[1], icon: Globe },
+    { ...valuesData[2], icon: Users },
+    { ...valuesData[3], icon: Clock },
   ];
 
   return (
     <>
       <SEO
-        title="About T4Translation - Professional Translation Company | Our Story"
-        description="Learn about T4Translation's mission to bridge languages and cultures worldwide. Meet our expert team of professional translators and discover our values, vision, and commitment to quality."
-        keywords="about T4Translation, professional translation company, translation team, language services company, certified translators, translation experts, company history"
+        title={t("seo.about.title")}
+        description={t("seo.about.description")}
+        keywords={t("seo.about.keywords")}
         canonicalUrl="https://t4translation.com/about"
       />
       <Layout>
@@ -82,18 +76,17 @@ const About = () => {
             <div className="text-center space-y-8 animate-fade-in-up">
               <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm text-lg font-medium">
                 <Building2 className="w-5 h-5 mr-2" />
-                About T4Translation
+                {t("about.hero.badge")}
               </div>
 
               <h1 className="text-5xl md:text-7xl font-bold leading-tight">
                 <span className="bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-                  About Us
+                  {t("about.hero.title")}
                 </span>
               </h1>
 
               <p className="text-xl md:text-2xl text-blue-100 leading-relaxed max-w-4xl mx-auto">
-                Your trusted linguistic bridge connecting cultures and
-                facilitating global communication with excellence since 2010
+                {t("about.hero.subtitle")}
               </p>
 
               <div className="flex justify-center mt-10">
@@ -109,7 +102,7 @@ const About = () => {
                   aria-label="Scroll to about content"
                 >
                   <div className="text-white/80 text-sm font-medium group-hover:text-white transition-colors duration-300">
-                    Learn About Us
+                    {t("about.hero.scrollText")}
                   </div>
                   <div className="relative">
                     <ArrowRight
@@ -537,41 +530,29 @@ const About = () => {
               <div className="animate-fade-in-up">
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
                   <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                    Our Mission
+                    {t("about.mission.title")}
                   </span>
                 </h2>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                  <strong>To serve as a reliable linguistic bridge</strong> that
-                  connects individuals, businesses, and organizations across
-                  cultural and language barriers. We are committed to delivering
-                  exceptional translation and interpretation services that
-                  preserve meaning, context, and cultural sensitivity while
-                  facilitating clear, effective communication in an increasingly
-                  connected world.
+                  {t("about.mission.description")}
                 </p>
 
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
                   <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                    Our Vision
+                    {t("about.vision.title")}
                   </span>
                 </h3>
                 <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                  We envision a world where language is never a barrier to
-                  understanding, collaboration, or opportunity. Through our{" "}
-                  <strong>24/7 commitment to quality and diversity</strong>, we
-                  strive to be the premier choice for organizations seeking
-                  professional linguistic services that respect cultural nuances
-                  and deliver precise, contextually appropriate communication
-                  solutions.
+                  {t("about.vision.description")}
                 </p>
 
                 {/* Key Points */}
                 <div className="space-y-4">
-                  {[
-                    "Excellence in every translation",
-                    "Cultural sensitivity and accuracy",
-                    "24/7 global support",
-                  ].map((point, index) => (
+                  {(
+                    t("about.mission.points", {
+                      returnObjects: true,
+                    }) as string[]
+                  ).map((point: string, index: number) => (
                     <div key={index} className="flex items-center space-x-3">
                       <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
                       <span className="text-gray-700 font-medium">{point}</span>
@@ -589,11 +570,10 @@ const About = () => {
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Our Values
+                {t("about.values.title")}
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                The principles that guide our commitment to exceptional service
-                and drive our mission forward
+                {t("about.values.subtitle")}
               </p>
             </div>
 
@@ -672,11 +652,10 @@ const About = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Meet Our Team
+                {t("about.team.title")}
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Experienced professionals dedicated to linguistic excellence and
-                cultural understanding
+                {t("about.team.subtitle")}
               </p>
             </div>
 
@@ -718,20 +697,19 @@ const About = () => {
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                Our Impact
+                {t("about.stats.title")}
               </h2>
               <p className="text-xl opacity-90 max-w-3xl mx-auto">
-                Numbers that reflect our commitment to excellence and global
-                reach
+                {t("about.stats.subtitle")}
               </p>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
-                { number: "50+", label: "Languages Supported" },
-                { number: "10,000+", label: "Projects Completed" },
-                { number: "500+", label: "Satisfied Clients" },
-                { number: "14", label: "Years of Excellence" },
+                { number: "50+", label: t("about.stats.languages") },
+                { number: "10,000+", label: t("about.stats.projects") },
+                { number: "500+", label: t("about.stats.clients") },
+                { number: "14", label: t("about.stats.years") },
               ].map((stat, index) => (
                 <div
                   key={index}

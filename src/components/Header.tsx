@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/Logo";
+import LanguageToggle from "@/components/LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
+  const { isRTL } = useLanguage();
 
   const navigation = [
-    { name: "Home", href: "/" },
-    { name: "Services", href: "/services" },
-    { name: "Areas", href: "/areas" },
-    { name: "About Us", href: "/about" },
-    { name: "Contact", href: "/contact" },
+    { name: t("nav.home"), href: "/" },
+    { name: t("nav.services"), href: "/services" },
+    { name: t("nav.areas"), href: "/areas" },
+    { name: t("nav.about"), href: "/about" },
+    { name: t("nav.contact"), href: "/contact" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -50,7 +55,9 @@ const Header = () => {
 
           {/* Enhanced Desktop Navigation */}
           <nav
-            className="hidden md:flex space-x-2"
+            className={`hidden md:flex ${
+              isRTL ? "space-x-reverse" : ""
+            } space-x-2`}
             role="navigation"
             aria-label="Main navigation"
             itemProp="hasPart"
@@ -85,15 +92,22 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Right side with Get Started Button */}
-          <div className="flex items-center space-x-3">
+          {/* Right side with Language Toggle and Get Started Button */}
+          <div
+            className={`flex items-center ${
+              isRTL ? "space-x-reverse" : ""
+            } space-x-3`}
+          >
+            {/* Language Toggle */}
+            <LanguageToggle />
+
             {/* Get Started Button - Far Right */}
             <Link to="/get-started" className="hidden lg:block">
               <Button
                 size="sm"
                 className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0 text-sm mr-2"
               >
-                Get Started
+                {t("nav.getStarted")}
               </Button>
             </Link>
 
@@ -101,13 +115,13 @@ const Header = () => {
             <Button
               variant="ghost"
               size="sm"
-              className="md:hidden hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300 group p-2"
+              className="md:hidden text-gray-700 hover:bg-blue-50 hover:!text-gray-800 transition-all duration-300 group p-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? (
-                <X className="w-5 h-5 group-hover:text-blue-600 transition-colors duration-300" />
+                <X className="w-5 h-5 text-gray-600 group-hover:!text-blue-600 transition-colors duration-300" />
               ) : (
-                <Menu className="w-5 h-5 group-hover:text-blue-600 transition-colors duration-300" />
+                <Menu className="w-5 h-5 text-gray-600 group-hover:!text-blue-600 transition-colors duration-300" />
               )}
             </Button>
           </div>
@@ -116,21 +130,24 @@ const Header = () => {
         {/* Enhanced Mobile Navigation - Full Screen Overlay */}
         {isMenuOpen && (
           <div className="md:hidden fixed inset-0 z-50 bg-white">
-            {/* Header with Logo and Close Button */}
+            {/* Header with Logo, Language Toggle and Close Button */}
             <div className="flex items-center justify-between p-6 border-b border-gray-100">
               <Logo size="sm" showText={true} />
-              <Button
-                variant="ghost"
-                size="sm"
-                className="hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300 group p-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <X className="w-6 h-6 group-hover:text-blue-600 transition-colors duration-300" />
-              </Button>
+              <div className="flex items-center space-x-3">
+                <LanguageToggle variant="mobile" />
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-700 hover:bg-blue-50 hover:!text-gray-800 transition-all duration-300 group p-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <X className="w-6 h-6 text-gray-600 group-hover:!text-blue-600 transition-colors duration-300" />
+                </Button>
+              </div>
             </div>
 
             {/* Navigation Links - Centered */}
-            <div className="flex flex-col items-center justify-center px-6 py-8 space-y-4 min-h-[60vh]">
+            <div className="flex flex-col items-center justify-center px-6 py-8 space-y-4 min-h-[80vh]">
               {navigation.map((item, index) => (
                 <Link
                   key={item.name}
@@ -138,7 +155,7 @@ const Header = () => {
                   className={`w-full max-w-sm text-center px-6 py-4 text-lg font-medium rounded-xl transition-all duration-300 transform hover:scale-105 ${
                     isActive(item.href)
                       ? "text-white bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg"
-                      : "text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:shadow-lg bg-gray-50 hover:bg-transparent"
+                      : "text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:shadow-lg bg-gray-50"
                   }`}
                   style={{
                     animationDelay: `${index * 100}ms`,
@@ -151,16 +168,6 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
-            </div>
-
-            {/* Bottom Section with Get Started */}
-            <div className="absolute bottom-0 left-0 right-0 px-6 py-6 border-t border-gray-100 bg-white">
-              {/* Get Started Button */}
-              <Link to="/get-started" onClick={() => setIsMenuOpen(false)}>
-                <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium px-6 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                  Get Started
-                </Button>
-              </Link>
             </div>
 
             {/* CSS for animations */}

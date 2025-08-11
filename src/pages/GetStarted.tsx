@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
@@ -26,6 +27,7 @@ import { useToast } from "@/hooks/use-toast";
 import { sendGetStartedEmail } from "@/services/emailService";
 
 const GetStarted = () => {
+  const { t } = useTranslation();
   const { toast } = useToast();
 
   // Preload critical image
@@ -199,55 +201,36 @@ Project Details:
     }
   };
 
-  const projectTypes = [
-    "Document Translation",
-    "Website Localization",
-    "Live Interpretation",
-    "Video Subtitling",
-    "Audio Transcription",
-    "Legal Translation",
-    "Medical Translation",
-    "Technical Translation",
-    "Marketing Content",
-    "Academic Papers",
-  ];
+  const projectTypes = t("getStarted.form.projectTypes", {
+    returnObjects: true,
+  }) as string[];
 
-  const languages = ["English", "Arabic", "French", "German"];
+  const languages = t("getStarted.form.languages", {
+    returnObjects: true,
+  }) as string[];
 
-  const areas = [
-    "Government Translation",
-    "Organization Translation",
-    "Education Translation",
-    "Media Translation",
-    "Legal and Business Translation",
-  ];
+  const areas = t("getStarted.form.areasList", {
+    returnObjects: true,
+  }) as string[];
 
-  const services = [
-    "Translation and Interpretation Services",
-    "Subtitling, Transcription, Captioning Service",
-    "Sign Language Service",
-    "Authentication Service",
-    "Localization Service",
-    "Surveys, Researches, News Bulletins",
-  ];
+  const services = t("getStarted.form.services", {
+    returnObjects: true,
+  }) as string[];
 
-  const urgencyOptions = [
-    { value: "urgent", label: "Urgent (24-48 hours)", price: "+50%" },
-    { value: "rush", label: "Rush (3-5 days)", price: "+25%" },
-    {
-      value: "standard",
-      label: "Standard (1-2 weeks)",
-      price: "Standard Rate",
-    },
-    { value: "economy", label: "Economy (2-4 weeks)", price: "-15%" },
-  ];
+  const urgencyOptions = t("getStarted.options", {
+    returnObjects: true,
+  }) as Array<{
+    value: string;
+    label: string;
+    price: string;
+  }>;
 
   return (
     <>
       <SEO
-        title="Get Started - T4Translation | Free Quote for Translation Services"
-        description="Start your translation project with T4Translation. Get a free quote for professional translation services in Arabic, English, French, and German. Expert linguists, fast turnaround."
-        keywords="get started translation, free translation quote, project quote, translation services, professional translators, Arabic translation, English translation, French translation, German translation"
+        title={t("seo.getStarted.title")}
+        description={t("seo.getStarted.description")}
+        keywords={t("seo.getStarted.keywords")}
         canonicalUrl="https://t4translation.com/get-started"
       />
       <Layout>
@@ -272,7 +255,7 @@ Project Details:
             <div className="text-center space-y-8 animate-fade-in-up">
               <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm text-lg font-medium">
                 <Rocket className="w-5 h-5 mr-2" aria-hidden="true" />
-                <span itemProp="breadcrumb">Start Your Project</span>
+                <span itemProp="breadcrumb">{t("getStarted.hero.badge")}</span>
               </div>
 
               <h1
@@ -281,7 +264,7 @@ Project Details:
                 itemProp="name"
               >
                 <span className="bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-                  Get Started
+                  {t("getStarted.hero.title")}
                 </span>
               </h1>
 
@@ -289,8 +272,7 @@ Project Details:
                 className="text-xl md:text-2xl text-blue-100 leading-relaxed max-w-4xl mx-auto"
                 itemProp="description"
               >
-                Transform your content for global audiences. Get a personalized
-                quote and timeline for your translation project in minutes
+                {t("getStarted.hero.subtitle")}
               </p>
 
               <div className="flex justify-center mt-10">
@@ -305,7 +287,7 @@ Project Details:
                   aria-label="Scroll to project form"
                 >
                   <div className="text-white/80 text-sm font-medium group-hover:text-white transition-colors duration-300">
-                    Start Your Project
+                    {t("getStarted.hero.scrollText")}
                   </div>
                   <div className="relative">
                     <ArrowRight
@@ -410,7 +392,7 @@ Project Details:
                 itemProp="name"
               >
                 <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  Feel Free to GetStarted
+                  {t("getStarted.form.title")}
                 </span>
               </h2>
             </div>
@@ -436,7 +418,10 @@ Project Details:
                         htmlFor="status"
                         className="text-gray-700 font-medium mb-2 block"
                       >
-                        Status <span className="text-gray-400">(Optional)</span>
+                        {t("getStarted.form.status")}{" "}
+                        <span className="text-gray-400">
+                          ({t("getStarted.form.optional")})
+                        </span>
                       </Label>
                       <Select
                         onValueChange={(value) =>
@@ -445,15 +430,32 @@ Project Details:
                       >
                         <SelectTrigger
                           id="status"
-                          className="h-12 border-gray-200 rounded-xl"
+                          className="h-12 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           aria-describedby="status-help"
                         >
-                          <SelectValue placeholder="Select Status" />
+                          <SelectValue
+                            placeholder={t("getStarted.form.statusPlaceholder")}
+                          />
                         </SelectTrigger>
-                        <SelectContent className="bg-white">
-                          <SelectItem value="urgent">Urgent</SelectItem>
-                          <SelectItem value="normal">Normal</SelectItem>
-                          <SelectItem value="anytime">AnyTime</SelectItem>
+                        <SelectContent className="bg-white border border-gray-200 rounded-xl shadow-lg">
+                          <SelectItem
+                            value="urgent"
+                            className="hover:bg-blue-50 hover:text-blue-900 cursor-pointer text-gray-900 focus:bg-blue-50 focus:text-blue-900"
+                          >
+                            {t("getStarted.options.urgent")}
+                          </SelectItem>
+                          <SelectItem
+                            value="normal"
+                            className="hover:bg-blue-50 hover:text-blue-900 cursor-pointer text-gray-900 focus:bg-blue-50 focus:text-blue-900"
+                          >
+                            {t("getStarted.options.normal")}
+                          </SelectItem>
+                          <SelectItem
+                            value="anytime"
+                            className="hover:bg-blue-50 hover:text-blue-900 cursor-pointer text-gray-900 focus:bg-blue-50 focus:text-blue-900"
+                          >
+                            {t("getStarted.options.anytime")}
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                       <div id="status-help" className="sr-only">
@@ -466,19 +468,25 @@ Project Details:
                         htmlFor="areas"
                         className="text-gray-700 font-medium mb-2 block"
                       >
-                        Areas
+                        {t("getStarted.form.areas")}
                       </Label>
                       <Select
                         onValueChange={(value) =>
                           handleInputChange("areas", value)
                         }
                       >
-                        <SelectTrigger className="h-12 border-gray-200 rounded-xl">
-                          <SelectValue placeholder="Select Areas" />
+                        <SelectTrigger className="h-12 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                          <SelectValue
+                            placeholder={t("getStarted.form.areasPlaceholder")}
+                          />
                         </SelectTrigger>
-                        <SelectContent className="bg-white">
+                        <SelectContent className="bg-white border border-gray-200 rounded-xl shadow-lg">
                           {areas.map((area) => (
-                            <SelectItem key={area} value={area.toLowerCase()}>
+                            <SelectItem
+                              key={area}
+                              value={area.toLowerCase()}
+                              className="hover:bg-blue-50 hover:text-blue-900 cursor-pointer text-gray-900 focus:bg-blue-50 focus:text-blue-900"
+                            >
                               {area}
                             </SelectItem>
                           ))}
@@ -491,21 +499,26 @@ Project Details:
                         htmlFor="service"
                         className="text-gray-700 font-medium mb-2 block"
                       >
-                        Service
+                        {t("getStarted.form.service")}
                       </Label>
                       <Select
                         onValueChange={(value) =>
                           handleInputChange("service", value)
                         }
                       >
-                        <SelectTrigger className="h-12 border-gray-200 rounded-xl">
-                          <SelectValue placeholder="Select Service" />
+                        <SelectTrigger className="h-12 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                          <SelectValue
+                            placeholder={t(
+                              "getStarted.form.servicePlaceholder"
+                            )}
+                          />
                         </SelectTrigger>
-                        <SelectContent className="bg-white">
+                        <SelectContent className="bg-white border border-gray-200 rounded-xl shadow-lg">
                           {services.map((service) => (
                             <SelectItem
                               key={service}
                               value={service.toLowerCase()}
+                              className="hover:bg-blue-50 hover:text-blue-900 cursor-pointer text-gray-900 focus:bg-blue-50 focus:text-blue-900"
                             >
                               {service}
                             </SelectItem>
@@ -519,19 +532,27 @@ Project Details:
                         htmlFor="sourceLanguage"
                         className="text-gray-700 font-medium mb-2 block"
                       >
-                        Source language
+                        {t("getStarted.form.sourceLanguage")}
                       </Label>
                       <Select
                         onValueChange={(value) =>
                           handleInputChange("sourceLanguage", value)
                         }
                       >
-                        <SelectTrigger className="h-12 border-gray-200 rounded-xl">
-                          <SelectValue placeholder="Select source language" />
+                        <SelectTrigger className="h-12 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                          <SelectValue
+                            placeholder={t(
+                              "getStarted.form.sourceLanguagePlaceholder"
+                            )}
+                          />
                         </SelectTrigger>
-                        <SelectContent className="bg-white">
+                        <SelectContent className="bg-white border border-gray-200 rounded-xl shadow-lg">
                           {languages.map((lang) => (
-                            <SelectItem key={lang} value={lang.toLowerCase()}>
+                            <SelectItem
+                              key={lang}
+                              value={lang.toLowerCase()}
+                              className="hover:bg-blue-50 hover:text-blue-900 cursor-pointer text-gray-900 focus:bg-blue-50 focus:text-blue-900"
+                            >
                               {lang}
                             </SelectItem>
                           ))}
@@ -544,19 +565,27 @@ Project Details:
                         htmlFor="targetLanguage"
                         className="text-gray-700 font-medium mb-2 block"
                       >
-                        Target language
+                        {t("getStarted.form.targetLanguage")}
                       </Label>
                       <Select
                         onValueChange={(value) =>
                           handleInputChange("targetLanguage", value)
                         }
                       >
-                        <SelectTrigger className="h-12 border-gray-200 rounded-xl">
-                          <SelectValue placeholder="Select target language" />
+                        <SelectTrigger className="h-12 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                          <SelectValue
+                            placeholder={t(
+                              "getStarted.form.targetLanguagePlaceholder"
+                            )}
+                          />
                         </SelectTrigger>
-                        <SelectContent className="bg-white">
+                        <SelectContent className="bg-white border border-gray-200 rounded-xl shadow-lg">
                           {languages.map((lang) => (
-                            <SelectItem key={lang} value={lang.toLowerCase()}>
+                            <SelectItem
+                              key={lang}
+                              value={lang.toLowerCase()}
+                              className="hover:bg-blue-50 hover:text-blue-900 cursor-pointer text-gray-900 focus:bg-blue-50 focus:text-blue-900"
+                            >
                               {lang}
                             </SelectItem>
                           ))}
@@ -569,7 +598,7 @@ Project Details:
                         htmlFor="name"
                         className="text-gray-700 font-medium mb-2 block"
                       >
-                        Full Name{" "}
+                        {t("getStarted.form.name")}{" "}
                         <span className="text-red-500" aria-label="required">
                           *
                         </span>
@@ -581,8 +610,8 @@ Project Details:
                         onChange={(e) =>
                           handleInputChange("name", e.target.value)
                         }
-                        placeholder="Your Full Name"
-                        className="h-12 border-gray-200 rounded-xl"
+                        placeholder={t("getStarted.form.namePlaceholder")}
+                        className="h-12 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         required
                         aria-required="true"
                         aria-describedby="name-error"
@@ -603,7 +632,7 @@ Project Details:
                         htmlFor="email"
                         className="text-gray-700 font-medium mb-2 block"
                       >
-                        Email Address{" "}
+                        {t("getStarted.form.email")}{" "}
                         <span className="text-red-500" aria-label="required">
                           *
                         </span>
@@ -616,8 +645,8 @@ Project Details:
                         onChange={(e) =>
                           handleInputChange("email", e.target.value)
                         }
-                        placeholder="Your Email Address"
-                        className="h-12 border-gray-200 rounded-xl"
+                        placeholder={t("getStarted.form.emailPlaceholder")}
+                        className="h-12 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         required
                         aria-required="true"
                         aria-describedby="email-error"
@@ -638,7 +667,7 @@ Project Details:
                         htmlFor="message"
                         className="text-gray-700 font-medium mb-2 block"
                       >
-                        Message Here{" "}
+                        {t("getStarted.form.message")}{" "}
                         <span className="text-red-500" aria-label="required">
                           *
                         </span>
@@ -650,9 +679,9 @@ Project Details:
                         onChange={(e) =>
                           handleInputChange("projectDetails", e.target.value)
                         }
-                        placeholder="Please describe your project in detail..."
+                        placeholder={t("getStarted.form.messagePlaceholder")}
                         rows={4}
-                        className="border-gray-200 rounded-xl resize-none"
+                        className="border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                         required
                         aria-required="true"
                         aria-describedby="message-error message-help"
@@ -661,8 +690,7 @@ Project Details:
                         id="message-help"
                         className="text-sm text-gray-500 mt-1"
                       >
-                        Include project details, word count, deadline, and any
-                        special requirements
+                        {t("getStarted.form.messageHelp")}
                       </div>
                       <div
                         id="message-error"
@@ -681,7 +709,7 @@ Project Details:
                         htmlFor="file"
                         className="text-gray-700 font-medium mb-2 block"
                       >
-                        Upload Files
+                        {t("getStarted.form.upload")}
                       </Label>
                       <div className="relative">
                         <Input
@@ -699,10 +727,10 @@ Project Details:
                           <span className="text-gray-500 text-sm">
                             {formData.file
                               ? formData.file.name
-                              : "No file chosen"}
+                              : t("getStarted.form.uploadPlaceholder")}
                           </span>
                           <span className="px-4 py-2 bg-blue-500 text-white text-sm rounded-lg hover:bg-blue-600 transition-colors">
-                            Choose Files
+                            {t("getStarted.form.chooseFiles")}
                           </span>
                         </label>
                       </div>
@@ -717,17 +745,17 @@ Project Details:
                         {isSubmitting ? (
                           <>
                             <div className="w-5 h-5 mr-2 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
-                            Submitting...
+                            {t("getStarted.form.submitting")}
                           </>
                         ) : isBlocked ? (
                           <>
                             <Clock className="w-5 h-5 mr-2" />
-                            Temporarily Blocked
+                            {t("getStarted.form.blocked")}
                           </>
                         ) : (
                           <>
                             <Rocket className="w-5 h-5 mr-2" />
-                            Submit your Proposal
+                            {t("getStarted.form.submit")}
                           </>
                         )}
                       </Button>

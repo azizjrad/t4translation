@@ -12,8 +12,10 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Logo from "@/components/Logo";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
   return (
     <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
       {/* Background Pattern */}
@@ -36,9 +38,7 @@ const Footer = () => {
               </Link>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Your trusted partner for professional translation and
-              interpretation services worldwide. Bridging languages, connecting
-              cultures.
+              {t("footer.description")}
             </p>
 
             {/* Social Links with Enhanced Design */}
@@ -64,13 +64,15 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-bold mb-6 text-white">Quick Links</h3>
+            <h3 className="text-xl font-bold mb-6 text-white">
+              {t("footer.quickLinks.title")}
+            </h3>
             <ul className="space-y-4">
               {[
-                { name: "About Us", href: "/about" },
-                { name: "Our Services", href: "/services" },
-                { name: "Service Areas", href: "/areas" },
-                { name: "Contact", href: "/contact" },
+                { name: t("footer.quickLinks.about"), href: "/about" },
+                { name: t("footer.quickLinks.services"), href: "/services" },
+                { name: t("footer.quickLinks.areas"), href: "/areas" },
+                { name: t("footer.quickLinks.contact"), href: "/contact" },
               ].map((link) => (
                 <li key={link.name}>
                   <Link
@@ -89,7 +91,9 @@ const Footer = () => {
 
           {/* Office Locations */}
           <div>
-            <h3 className="text-xl font-bold mb-6 text-white">Our Offices</h3>
+            <h3 className="text-xl font-bold mb-6 text-white">
+              {t("footer.offices.title")}
+            </h3>
             <div className="space-y-6">
               <div className="group">
                 <div className="flex items-start space-x-3 p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-all duration-300">
@@ -98,10 +102,10 @@ const Footer = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">
-                      Tunisia Office
+                      {t("footer.offices.tunisia.title")}
                     </h4>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                      Hammamet-Tunisia
+                      {t("footer.offices.tunisia.address")}
                     </p>
                   </div>
                 </div>
@@ -114,12 +118,10 @@ const Footer = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">
-                      Libya Office
+                      {t("footer.offices.libya.title")}
                     </h4>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                      Dhahra Street
-                      <br />
-                      Tripoli, Libya
+                      {t("footer.offices.libya.address")}
                     </p>
                   </div>
                 </div>
@@ -129,7 +131,9 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-xl font-bold mb-6 text-white">Contact Us</h3>
+            <h3 className="text-xl font-bold mb-6 text-white">
+              {t("footer.contact.title")}
+            </h3>
             <div className="space-y-4">
               {[
                 {
@@ -172,10 +176,11 @@ const Footer = () => {
           <div className="relative border border-white/10 rounded-2xl p-8 text-center backdrop-blur-sm">
             <div className="relative">
               <blockquote className="text-xl italic text-gray-200 mb-4 leading-relaxed">
-                "Coming together is the beginning. Keeping together is progress.
-                Working together is success."
+                {t("footer.quote.text")}
               </blockquote>
-              <p className="text-sm text-gray-400 font-medium">— Henry Ford</p>
+              <p className="text-sm text-gray-400 font-medium">
+                {t("footer.quote.author")}
+              </p>
             </div>
           </div>
         </div>
@@ -183,9 +188,7 @@ const Footer = () => {
         {/* Bottom Section with Copyright */}
         <div className="mt-12 pt-8 border-t border-white/10">
           <div className="text-center">
-            <div className="text-gray-400 text-sm">
-              © 2024 T4Translation Services. All rights reserved.
-            </div>
+            <div className="text-gray-400 text-sm">{t("footer.copyright")}</div>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -16,12 +17,14 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 
 const Index = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <SEO
-        title="T4Translation - Professional Translation & Interpretation Services | Global Language Solutions"
-        description="Expert translation and interpretation services in Arabic, English, French, and German. Government, legal, medical, business translation with fast turnaround. Professional linguists worldwide."
-        keywords="translation services, interpretation, Arabic translation, English translation, French translation, German translation, professional translators, document translation, legal translation, medical translation, business translation, certified translation, localization services"
+        title={t("seo.home.title")}
+        description={t("seo.home.description")}
+        keywords={t("seo.home.keywords")}
         canonicalUrl="https://t4translation.com"
       />
       <Layout>
@@ -51,22 +54,20 @@ const Index = () => {
                 <div className="space-y-2">
                   <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-sm font-medium">
                     <Globe className="w-4 h-4 mr-2" />
-                    <span itemProp="serviceType">
-                      Professional Translation Services
-                    </span>
+                    <span itemProp="serviceType">{t("hero.badge")}</span>
                   </div>
                   <h1
                     className="text-5xl md:text-7xl font-bold leading-tight"
                     itemProp="name"
                   >
-                    Welcome to
+                    {t("hero.title")}
                     <span
                       className="block bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent"
                       itemProp="provider"
                       itemScope
                       itemType="https://schema.org/Organization"
                     >
-                      <span itemProp="name">T4Translation</span>
+                      <span itemProp="name">{t("hero.company")}</span>
                     </span>
                   </h1>
                 </div>
@@ -76,36 +77,35 @@ const Index = () => {
                     className="text-2xl md:text-3xl font-semibold text-blue-100"
                     itemProp="slogan"
                   >
-                    "Quality – Short Turnarounds – Satisfaction – Customer
-                    Service"
+                    {t("hero.slogan")}
                   </h2>
                   <p className="text-lg md:text-xl text-blue-100 leading-relaxed max-w-2xl">
-                    We care for our clients; we listen to them; understand their
-                    needs and make sure they get excellent and flawless customer
-                    service. Customer satisfaction is our goal.
+                    {t("hero.description")}
                   </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Link to="/get-started">
+                <div className="flex flex-col sm:flex-row gap-4 items-center">
+                  <Link to="/get-started" className="w-full sm:w-auto">
                     <Button
                       size="lg"
-                      className="group relative bg-white text-primary hover:bg-white text-lg px-8 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden border-0"
+                      className="group relative bg-white text-primary hover:bg-white text-lg px-8 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden border-0 w-full sm:w-auto"
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 opacity-30"></div>
-                      <span className="relative z-10">Get Started</span>
+                      <span className="relative z-10">
+                        {t("hero.getStarted")}
+                      </span>
                     </Button>
                   </Link>
-                  <Link to="/services">
+                  <Link to="/services" className="w-full sm:w-auto">
                     <Button
                       size="lg"
-                      className="group relative bg-transparent border-2 border-white text-white hover:text-primary text-lg px-8 py-4 rounded-full transition-all duration-500 transform hover:scale-105 overflow-hidden backdrop-blur-sm"
+                      className="group relative bg-transparent border-2 border-white text-white hover:text-primary text-lg px-8 py-4 rounded-full transition-all duration-500 transform hover:scale-105 overflow-hidden backdrop-blur-sm w-full sm:w-auto"
                     >
                       <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                       <span className="relative z-10 group-hover:text-primary transition-colors duration-300">
-                        View Services
+                        {t("hero.viewServices")}
                       </span>
                     </Button>
                   </Link>
@@ -207,17 +207,10 @@ const Index = () => {
               </div>
               <div className="order-1 lg:order-2 animate-fade-in-right">
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                  Who We Are
+                  {t("about.whoWeAre.title")}
                 </h2>
                 <p className="text-xl text-gray-600 mb-6 leading-relaxed">
-                  We are a group of skilled professionals dedicated to
-                  delivering accurate and culturally relevant translations. Our
-                  team includes experienced translators, localization experts,
-                  and project managers who collaborate seamlessly to ensure
-                  delivering high-quality content. With expertise in diverse
-                  languages and industries, we provide tailored solutions to
-                  meet your specific needs and help you connect with the global
-                  audience effectively.
+                  {t("about.whoWeAre.description")}
                 </p>
               </div>
             </div>
@@ -226,31 +219,28 @@ const Index = () => {
             <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
               <div className="animate-fade-in-left">
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                  Our Mission
+                  {t("about.mission.title")}
                 </h2>
                 <p className="text-xl text-gray-600 mb-6 leading-relaxed">
-                  To facilitate smooth interaction and serve as a reliable
-                  linguistic bridge and mediator between individuals,
-                  communities, businesses, institutions, international
-                  organizations, etc.
+                  {t("about.mission.description")}
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
                     <div className="w-3 h-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full"></div>
                     <span className="text-gray-700">
-                      Excellence in every translation
+                      {t("about.mission.points.0")}
                     </span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-3 h-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full"></div>
                     <span className="text-gray-700">
-                      Cultural sensitivity and accuracy
+                      {t("about.mission.points.1")}
                     </span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-3 h-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full"></div>
                     <span className="text-gray-700">
-                      Building bridges between communities
+                      {t("about.mission.points.2")}
                     </span>
                   </div>
                 </div>
@@ -453,14 +443,10 @@ const Index = () => {
               </div>
               <div className="order-1 lg:order-2 animate-fade-in-right">
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                  Our Services
+                  {t("about.services.title")}
                 </h2>
                 <p className="text-xl text-gray-600 mb-6 leading-relaxed">
-                  T4Translation is a translation services portal which offers
-                  individuals, organizations, and businesses excellent
-                  translation and interpretation services using native-language
-                  professionals from several countries in a genuine effort to
-                  offer high-quality translations and other services..
+                  {t("about.services.description")}
                 </p>
 
                 {/* Interactive Service Buttons */}
@@ -482,7 +468,7 @@ const Index = () => {
                     }}
                     className="px-6 py-3 bg-blue-100 hover:bg-blue-200 text-blue-800 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300"
                   >
-                    Document
+                    {t("about.services.categories.document")}
                   </button>
                   <button
                     onClick={() => {
@@ -501,7 +487,7 @@ const Index = () => {
                     }}
                     className="px-6 py-3 bg-green-100 hover:bg-green-200 text-green-800 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-300"
                   >
-                    Business
+                    {t("about.services.categories.business")}
                   </button>
                   <button
                     onClick={() => {
@@ -520,7 +506,7 @@ const Index = () => {
                     }}
                     className="px-6 py-3 bg-purple-100 hover:bg-purple-200 text-purple-800 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-300"
                   >
-                    Government
+                    {t("about.services.categories.government")}
                   </button>
                   <button
                     onClick={() => {
@@ -539,7 +525,7 @@ const Index = () => {
                     }}
                     className="px-6 py-3 bg-red-100 hover:bg-red-200 text-red-800 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-300"
                   >
-                    Legal
+                    {t("about.services.categories.legal")}
                   </button>
                 </div>
               </div>
@@ -747,17 +733,14 @@ const Index = () => {
                   </div>
 
                   <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                    Our Vision
+                    {t("about.vision.title")}
                   </h2>
                   <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto">
-                    T4Translation is mindful of our diversity, and seeks to
-                    serve as a bridge between various distant interlocutors and
-                    clients by providing them with top-notch and timely services
-                    on a 24/7 basis.
+                    {t("about.vision.description")}
                   </p>
                   <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-600 text-white rounded-full shadow-lg">
                     <span className="font-semibold">
-                      Connecting Cultures, Bridging Languages
+                      {t("about.vision.tagline")}
                     </span>
                   </div>
                 </div>
@@ -771,11 +754,10 @@ const Index = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Languages We Translate
+                {t("languagesList.title")}
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Professional translation services across multiple languages with
-                native-level expertise
+                {t("languagesList.subtitle")}
               </p>
             </div>
 
@@ -791,11 +773,10 @@ const Index = () => {
                   />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">
-                  English
+                  {t("languagesList.items.english.title")}
                 </h3>
                 <p className="text-gray-600">
-                  Native English speakers ensuring perfect fluency and cultural
-                  accuracy
+                  {t("languagesList.items.english.description")}
                 </p>
               </div>
 
@@ -810,11 +791,10 @@ const Index = () => {
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">
-                  French
+                  {t("languagesList.items.french.title")}
                 </h3>
                 <p className="text-gray-600">
-                  Precise French translations with attention to linguistic
-                  nuances
+                  {t("languagesList.items.french.description")}
                 </p>
               </div>
 
@@ -829,11 +809,10 @@ const Index = () => {
                   />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">
-                  Arabic
+                  {t("languagesList.items.arabic.title")}
                 </h3>
                 <p className="text-gray-600">
-                  Expert Arabic translations respecting cultural context and
-                  dialects
+                  {t("languagesList.items.arabic.description")}
                 </p>
               </div>
 
@@ -848,10 +827,10 @@ const Index = () => {
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">
-                  German
+                  {t("languagesList.items.german.title")}
                 </h3>
                 <p className="text-gray-600">
-                  Professional German translations with technical precision
+                  {t("languagesList.items.german.description")}
                 </p>
               </div>
             </div>
@@ -864,23 +843,24 @@ const Index = () => {
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="animate-fade-in-up">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                Ready to Bridge Languages?
+                {t("cta.title")}
               </h2>
               <p className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-90">
-                Join thousands of satisfied clients who trust T4Translation for
-                their linguistic needs. Let's start your translation journey
-                today.
+                {t("cta.subtitle")}
               </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Link to="/get-started">
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <Link
+                  to="/get-started"
+                  className="w-full sm:w-auto max-w-sm sm:max-w-none"
+                >
                   <Button
                     size="lg"
-                    className="group relative bg-white text-primary hover:bg-white text-lg px-10 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden border-0"
+                    className="group relative bg-white text-primary hover:bg-white text-lg px-10 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden border-0 w-full sm:w-auto"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 opacity-30"></div>
                     <span className="relative z-10 font-semibold">
-                      Get Started Now
+                      {t("cta.button")}
                     </span>
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
                   </Button>

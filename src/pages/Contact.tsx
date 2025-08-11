@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
@@ -25,6 +26,7 @@ import { useToast } from "@/hooks/use-toast";
 import { sendContactEmail } from "@/services/emailService";
 
 const Contact = () => {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     reason: "",
@@ -150,14 +152,19 @@ const Contact = () => {
     }
   };
 
-  const reasons = ["Quote", "Inquiry", "Reclamation", "Other"];
+  const reasons = [
+    t("contact.reasons.quote"),
+    t("contact.reasons.inquiry"),
+    t("contact.reasons.reclamation"),
+    t("contact.reasons.other"),
+  ];
 
   return (
     <>
       <SEO
-        title="Contact T4Translation - Get in Touch | Professional Translation Services"
-        description="Contact T4Translation for expert translation and interpretation services. Get quotes, ask questions, or discuss your project needs. Available in Arabic, English, French, and German."
-        keywords="contact translation services, translation quote, T4Translation contact, professional translators contact, translation inquiry, interpretation services contact"
+        title={t("seo.contact.title")}
+        description={t("seo.contact.description")}
+        keywords={t("seo.contact.keywords")}
         canonicalUrl="https://t4translation.com/contact"
       />
       <Layout>
@@ -176,18 +183,17 @@ const Contact = () => {
             <div className="text-center space-y-8 animate-fade-in-up">
               <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm text-lg font-medium">
                 <MessageSquare className="w-5 h-5 mr-2" />
-                Contact T4Translation
+                {t("contact.hero.badge")}
               </div>
 
               <h1 className="text-5xl md:text-7xl font-bold leading-tight">
                 <span className="bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-                  Get In Touch
+                  {t("contact.hero.title")}
                 </span>
               </h1>
 
               <p className="text-xl md:text-2xl text-blue-100 leading-relaxed max-w-4xl mx-auto">
-                Ready to break language barriers? Let's discuss your project and
-                discover how we can help you communicate globally
+                {t("contact.hero.subtitle")}
               </p>
 
               <div className="flex justify-center mt-10">
@@ -203,7 +209,7 @@ const Contact = () => {
                   aria-label="Scroll to contact form"
                 >
                   <div className="text-white/80 text-sm font-medium group-hover:text-white transition-colors duration-300">
-                    Start Conversation
+                    {t("contact.hero.scrollText")}
                   </div>
                   <div className="relative">
                     <ArrowRight
@@ -303,12 +309,11 @@ const Contact = () => {
                   <div className="mb-8">
                     <h2 className="text-3xl font-bold text-gray-900 mb-4">
                       <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                        Send us a Message
+                        {t("contact.form.title")}
                       </span>
                     </h2>
                     <p className="text-gray-600 leading-relaxed">
-                      Have a question or need assistance? We're here to help you
-                      with all your linguistic needs.
+                      {t("contact.form.subtitle")}
                     </p>
                   </div>
 
@@ -319,7 +324,7 @@ const Contact = () => {
                         htmlFor="reason"
                         className="text-gray-700 font-medium mb-2 block"
                       >
-                        Reason/Purpose
+                        {t("contact.form.reason")}
                       </Label>
                       <Select
                         onValueChange={(value) =>
@@ -328,14 +333,16 @@ const Contact = () => {
                         value={formData.reason}
                       >
                         <SelectTrigger className="h-12 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                          <SelectValue placeholder="Select reason/purpose" />
+                          <SelectValue
+                            placeholder={t("contact.form.reasonPlaceholder")}
+                          />
                         </SelectTrigger>
                         <SelectContent className="bg-white border border-gray-200 rounded-xl shadow-lg">
                           {reasons.map((reason) => (
                             <SelectItem
                               key={reason}
                               value={reason.toLowerCase()}
-                              className="hover:bg-blue-50 cursor-pointer"
+                              className="hover:bg-blue-50 hover:text-blue-900 cursor-pointer text-gray-900 focus:bg-blue-50 focus:text-blue-900"
                             >
                               {reason}
                             </SelectItem>
@@ -350,7 +357,7 @@ const Contact = () => {
                         htmlFor="name"
                         className="text-gray-700 font-medium mb-2 block"
                       >
-                        Full Name
+                        {t("contact.form.name")}
                       </Label>
                       <Input
                         id="name"
@@ -358,7 +365,7 @@ const Contact = () => {
                         onChange={(e) =>
                           handleInputChange("name", e.target.value)
                         }
-                        placeholder="Your Full Name"
+                        placeholder={t("contact.form.namePlaceholder")}
                         className="h-12 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         required
                       />
@@ -370,7 +377,7 @@ const Contact = () => {
                         htmlFor="email"
                         className="text-gray-700 font-medium mb-2 block"
                       >
-                        Email Address
+                        {t("contact.form.email")}
                       </Label>
                       <Input
                         id="email"
@@ -379,7 +386,7 @@ const Contact = () => {
                         onChange={(e) =>
                           handleInputChange("email", e.target.value)
                         }
-                        placeholder="Your Email Address"
+                        placeholder={t("contact.form.emailPlaceholder")}
                         className="h-12 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         required
                       />
@@ -391,7 +398,7 @@ const Contact = () => {
                         htmlFor="message"
                         className="text-gray-700 font-medium mb-2 block"
                       >
-                        Message
+                        {t("contact.form.message")}
                       </Label>
                       <Textarea
                         id="message"
@@ -399,7 +406,7 @@ const Contact = () => {
                         onChange={(e) =>
                           handleInputChange("message", e.target.value)
                         }
-                        placeholder="Tell us about your project or inquiry..."
+                        placeholder={t("contact.form.messagePlaceholder")}
                         rows={5}
                         className="border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                         required
@@ -415,17 +422,17 @@ const Contact = () => {
                       {isSubmitting ? (
                         <>
                           <div className="w-5 h-5 mr-2 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
-                          Sending...
+                          {t("contact.form.submitting")}
                         </>
                       ) : isBlocked ? (
                         <>
                           <Clock className="w-5 h-5 mr-2" />
-                          Temporarily Blocked
+                          {t("contact.form.blocked")}
                         </>
                       ) : (
                         <>
                           <MessageSquare className="w-5 h-5 mr-2" />
-                          Send Message
+                          {t("contact.form.submit")}
                         </>
                       )}
                     </Button>

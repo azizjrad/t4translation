@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
@@ -28,118 +29,104 @@ import {
 } from "lucide-react";
 
 const Services = () => {
+  const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState("All");
 
-  const services = [
+  const getServices = () => [
     {
       icon: Users,
-      title: "Interpretation",
-      category: "Business",
-      description:
-        "T4Translation offers also interpretation services whether simultaneous or consecutive on as-needed basis.",
-      features: [
-        "Simultaneous Interpretation",
-        "Consecutive Interpretation",
-        "Conference Support",
-        "Business Meetings",
-      ],
+      title: t("services.items.interpretation.title"),
+      category: t("services.items.interpretation.category"),
+      description: t("services.items.interpretation.description"),
+      features: t("services.items.interpretation.features", {
+        returnObjects: true,
+      }) as string[],
       color: "from-blue-500 to-cyan-500",
       bgColor: "from-blue-50 to-cyan-50",
       image: "/interpretation.png",
     },
     {
       icon: Video,
-      title: "Subtitling, Transcription, Captioning",
-      category: "Document",
-      description:
-        "T4Translation offers also a wider array of services including: subtitling, transcription, and captioning services.",
-      features: [
-        "Video Subtitling",
-        "Audio Transcription",
-        "Closed Captioning",
-        "Multimedia Content",
-      ],
+      title: t("services.items.subtitling.title"),
+      category: t("services.items.subtitling.category"),
+      description: t("services.items.subtitling.description"),
+      features: t("services.items.subtitling.features", {
+        returnObjects: true,
+      }) as string[],
       color: "from-purple-500 to-violet-500",
       bgColor: "from-purple-50 to-violet-50",
       image: "/subtitling.png",
     },
     {
       icon: Hand,
-      title: "Sign Language",
-      category: "Business",
-      description:
-        "To the extent possible, we offer customized services especially sign language for DHOH communities.",
-      features: [
-        "ASL Interpretation",
-        "DHOH Community Support",
-        "Accessibility Services",
-        "Live Events",
-      ],
+      title: t("services.items.signLanguage.title"),
+      category: t("services.items.signLanguage.category"),
+      description: t("services.items.signLanguage.description"),
+      features: t("services.items.signLanguage.features", {
+        returnObjects: true,
+      }) as string[],
       color: "from-pink-500 to-rose-500",
       bgColor: "from-pink-50 to-rose-50",
       image: "/sign.png",
     },
     {
       icon: Shield,
-      title: "Authentication",
-      category: "Document",
-      description:
-        "In addition to translation services, and to save you time and effort, we offer certification and authentication services. Upon your request, your official documents will be translated by a certified translator then will be approved by a notary public.",
-      features: [
-        "Document Certification",
-        "Notary Services",
-        "Legal Authentication",
-        "Official Translations",
-      ],
+      title: t("services.items.authentication.title"),
+      category: t("services.items.authentication.category"),
+      description: t("services.items.authentication.description"),
+      features: t("services.items.authentication.features", {
+        returnObjects: true,
+      }) as string[],
       color: "from-emerald-500 to-green-500",
       bgColor: "from-emerald-50 to-green-50",
       image: "/authentication.png",
     },
     {
       icon: MapPin,
-      title: "Localization",
-      category: "Business",
-      description:
-        "T4Translation is your perfect partner to ensure that your translated documents show the nuances that make them accurate in terms of text and intent. Our native speaker translators, linguists and reviewers are mindful of cultural nuances, idiosyncrasies and compliance issues. Thus, making your work bump-free, seamless and smooth.",
-      features: [
-        "Cultural Adaptation",
-        "Market Research",
-        "Regional Compliance",
-        "Native Speakers",
-      ],
+      title: t("services.items.localization.title"),
+      category: t("services.items.localization.category"),
+      description: t("services.items.localization.description"),
+      features: t("services.items.localization.features", {
+        returnObjects: true,
+      }) as string[],
       color: "from-orange-500 to-amber-500",
       bgColor: "from-orange-50 to-amber-50",
       image: "/localization.png",
     },
     {
       icon: FileText,
-      title: "Surveys, Researches, News Bulletins",
-      category: "Document",
-      description:
-        "Our team of experts include journalists and academics who can undertake surveys, researches, news bulletins and compile reports for customers such as: NGOs, Civil Society, Think-tanks, International Agencies and Organizations such as (UN, EU, AU, ECOWAS, CGC.) etc.",
-      features: [
-        "Academic Research",
-        "NGO Reports",
-        "Media Content",
-        "International Organizations",
-      ],
+      title: t("services.items.surveys.title"),
+      category: t("services.items.surveys.category"),
+      description: t("services.items.surveys.description"),
+      features: t("services.items.surveys.features", {
+        returnObjects: true,
+      }) as string[],
       color: "from-indigo-500 to-blue-500",
       bgColor: "from-indigo-50 to-blue-50",
       image: "/surveys.png",
     },
   ];
 
+  const services = getServices();
+
   const filteredServices =
-    activeFilter === "All"
+    activeFilter === "All" || activeFilter === t("services.grid.filters.all")
       ? services
-      : services.filter((service) => service.category === activeFilter);
+      : services.filter(
+          (service) =>
+            service.category === activeFilter ||
+            (activeFilter === "Business" &&
+              service.category === t("services.grid.filters.business")) ||
+            (activeFilter === "Document" &&
+              service.category === t("services.grid.filters.document"))
+        );
 
   return (
     <>
       <SEO
-        title="Professional Translation Services - T4Translation | Expert Language Solutions"
-        description="Comprehensive translation and interpretation services including document translation, legal translation, medical translation, website localization, subtitling, and live interpretation in Arabic, English, French, and German."
-        keywords="translation services, interpretation services, document translation, legal translation, medical translation, website localization, subtitling services, transcription, live interpretation, certified translation, professional translators"
+        title={t("seo.services.title")}
+        description={t("seo.services.description")}
+        keywords={t("seo.services.keywords")}
         canonicalUrl="https://t4translation.com/services"
       />
       <Layout>
@@ -158,18 +145,17 @@ const Services = () => {
             <div className="text-center space-y-8 animate-fade-in-up">
               <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm text-lg font-medium">
                 <Languages className="w-5 h-5 mr-2" />
-                Professional Language Services
+                {t("services.hero.badge")}
               </div>
 
               <h1 className="text-5xl md:text-7xl font-bold leading-tight">
                 <span className="bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-                  Our Services
+                  {t("services.hero.title")}
                 </span>
               </h1>
 
               <p className="text-xl md:text-2xl text-blue-100 leading-relaxed max-w-4xl mx-auto">
-                Comprehensive language solutions designed to bridge
-                communication gaps and connect cultures across the globe
+                {t("services.hero.subtitle")}
               </p>
 
               <div className="flex justify-center mt-10">
@@ -185,7 +171,7 @@ const Services = () => {
                   aria-label="Scroll to services"
                 >
                   <div className="text-white/80 text-sm font-medium group-hover:text-white transition-colors duration-300">
-                    Discover Our Services
+                    {t("services.hero.scrollText")}
                   </div>
                   <div className="relative">
                     <ArrowRight
@@ -223,27 +209,38 @@ const Services = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                What We Offer
+                {t("services.grid.title")}
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-                From interpretation to authentication, we provide end-to-end
-                language solutions tailored to your specific needs
+                {t("services.grid.subtitle")}
               </p>
 
               {/* Filter Buttons */}
               <div className="flex flex-wrap justify-center gap-4 mb-8">
-                {["All", "Business", "Document"].map((filter) => (
+                {[
+                  { key: "All", label: t("services.grid.filters.all") },
+                  {
+                    key: "Business",
+                    label: t("services.grid.filters.business"),
+                  },
+                  {
+                    key: "Document",
+                    label: t("services.grid.filters.document"),
+                  },
+                ].map((filter) => (
                   <Button
-                    key={filter}
-                    onClick={() => setActiveFilter(filter)}
-                    variant={activeFilter === filter ? "default" : "outline"}
+                    key={filter.key}
+                    onClick={() => setActiveFilter(filter.key)}
+                    variant={
+                      activeFilter === filter.key ? "default" : "outline"
+                    }
                     className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${
-                      activeFilter === filter
+                      activeFilter === filter.key
                         ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg border-0 hover:from-blue-700 hover:to-purple-700"
                         : "border-2 border-gray-300 text-gray-600 bg-white hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 hover:shadow-md"
                     }`}
                   >
-                    {filter}
+                    {filter.label}
                   </Button>
                 ))}
               </div>
@@ -338,7 +335,7 @@ const Services = () => {
                               variant="outline"
                               className="group/btn border-2 hover:border-transparent hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white transition-all duration-300"
                             >
-                              <span>View Service</span>
+                              <span>{t("services.viewService")}</span>
                               <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300" />
                             </Button>
                           </div>
@@ -358,11 +355,10 @@ const Services = () => {
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Our Process
+                {t("services.process.title")}
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Simple, efficient, and transparent workflow designed to deliver
-                exceptional results every time
+                {t("services.process.subtitle")}
               </p>
             </div>
 
@@ -382,25 +378,22 @@ const Services = () => {
               {[
                 {
                   step: "01",
-                  title: "Submit Request",
-                  description:
-                    "Share your project details, timeline, and specific requirements through our streamlined contact process.",
+                  title: t("services.process.steps.submit.title"),
+                  description: t("services.process.steps.submit.description"),
                   icon: MessageSquare,
                   color: "from-blue-500 to-cyan-500",
                 },
                 {
                   step: "02",
-                  title: "Expert Assignment",
-                  description:
-                    "Receive a detailed quote and have your project assigned to our best-matched native-speaking linguist.",
+                  title: t("services.process.steps.assign.title"),
+                  description: t("services.process.steps.assign.description"),
                   icon: Users,
                   color: "from-purple-500 to-violet-500",
                 },
                 {
                   step: "03",
-                  title: "Quality Delivery",
-                  description:
-                    "Get your professionally completed project with comprehensive quality assurance and ongoing support.",
+                  title: t("services.process.steps.deliver.title"),
+                  description: t("services.process.steps.deliver.description"),
                   icon: Award,
                   color: "from-emerald-500 to-green-500",
                 },
@@ -448,11 +441,10 @@ const Services = () => {
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                Why Choose T4Translation?
+                {t("services.whyChoose.title")}
               </h2>
               <p className="text-xl opacity-90 max-w-3xl mx-auto">
-                Excellence, reliability, and cultural sensitivity in every
-                project
+                {t("services.whyChoose.subtitle")}
               </p>
             </div>
 
@@ -460,26 +452,31 @@ const Services = () => {
               {[
                 {
                   icon: Clock,
-                  title: "24/7 Service",
-                  description:
-                    "Round-the-clock availability for urgent projects",
+                  title: t("services.whyChoose.features.availability.title"),
+                  description: t(
+                    "services.whyChoose.features.availability.description"
+                  ),
                 },
                 {
                   icon: Users,
-                  title: "Native Speakers",
-                  description:
-                    "Professional linguists from diverse cultural backgrounds",
+                  title: t("services.whyChoose.features.nativeSpeakers.title"),
+                  description: t(
+                    "services.whyChoose.features.nativeSpeakers.description"
+                  ),
                 },
                 {
                   icon: Shield,
-                  title: "Quality Assured",
-                  description: "Rigorous quality control and review processes",
+                  title: t("services.whyChoose.features.quality.title"),
+                  description: t(
+                    "services.whyChoose.features.quality.description"
+                  ),
                 },
                 {
                   icon: Globe,
-                  title: "50+ Languages",
-                  description:
-                    "Comprehensive coverage across major world languages",
+                  title: t("services.whyChoose.features.languages.title"),
+                  description: t(
+                    "services.whyChoose.features.languages.description"
+                  ),
                 },
               ].map((feature, index) => {
                 const IconComponent = feature.icon;
@@ -506,11 +503,10 @@ const Services = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="animate-fade-in-up">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Ready to Get Started?
+                {t("services.cta.title")}
               </h2>
               <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-                Let's discuss your project requirements and provide you with a
-                customized solution that meets your specific needs.
+                {t("services.cta.subtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Link to="/get-started">
@@ -519,7 +515,7 @@ const Services = () => {
                     className="group relative bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-lg px-10 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border-0"
                   >
                     <span className="relative z-10 font-semibold">
-                      Get Started
+                      {t("services.cta.primaryButton")}
                     </span>
                   </Button>
                 </Link>
@@ -529,7 +525,7 @@ const Services = () => {
                     variant="outline"
                     className="text-lg px-10 py-4 rounded-full border-2 border-gray-300 hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300"
                   >
-                    Learn More About Us
+                    {t("services.cta.secondaryButton")}
                   </Button>
                 </Link>
               </div>
