@@ -82,10 +82,9 @@ const LanguageToggle: React.FC<LanguageToggleProps> = ({
       aria-label={getTooltipText()}
     >
       {getFlagIcon()}
-      <span className="text-sm font-medium text-gray-700 group-hover:!text-gray-800 hidden lg:inline">
-        {getLanguageDisplay()}
+      <span className="text-sm font-medium text-gray-700 group-hover:!text-gray-800">
+        {getMobileLanguageDisplay()}
       </span>
-      <Globe className="w-4 h-4 text-gray-600 group-hover:!text-blue-600 transition-colors duration-300 lg:hidden" />
     </Button>
   );
 };
