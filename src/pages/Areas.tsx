@@ -82,7 +82,7 @@ const Areas = () => {
   return (
     <>
       <SEO
-        title={t("seo.areas.title")}
+        title="Areas"
         description={t("seo.areas.description")}
         keywords={t("seo.areas.keywords")}
         canonicalUrl="https://t4translation.com/areas"
@@ -231,9 +231,10 @@ const Areas = () => {
                               {area.title}
                             </h3>
 
-                            <p className="text-gray-600 leading-relaxed mb-6">
-                              {area.description}
-                            </p>
+                            <p 
+                              className="text-gray-600 leading-relaxed mb-6"
+                              dangerouslySetInnerHTML={{ __html: area.description }}
+                            />
 
                             {/* Features */}
                             <div className="grid grid-cols-2 gap-2 mb-6">

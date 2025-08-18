@@ -19,7 +19,7 @@ const NotFound = () => {
   return (
     <>
       <SEO
-        title="Page Not Found - T4Translation | 404 Error"
+        title="404 - Page Not Found"
         description="The page you're looking for doesn't exist. Explore our professional translation services or contact us for assistance with your translation needs."
         keywords="404 error, page not found, translation services, T4Translation"
         canonicalUrl="https://t4translation.com/404"

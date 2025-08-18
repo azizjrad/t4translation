@@ -228,7 +228,7 @@ Project Details:
   return (
     <>
       <SEO
-        title={t("seo.getStarted.title")}
+        title="Get Started"
         description={t("seo.getStarted.description")}
         keywords={t("seo.getStarted.keywords")}
         canonicalUrl="https://t4translation.com/get-started"

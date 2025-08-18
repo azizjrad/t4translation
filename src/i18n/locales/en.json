@@ -48,7 +48,7 @@
       "text": "\"Coming together is the beginning. Keeping together is progress. Working together is success.\"",
       "author": "— Henry Ford"
     },
-    "copyright": "© 2024 T4Translation Services. All rights reserved.",
+    "copyright": "© 2025 T4Translation Services. All rights reserved.",
     "allRightsReserved": "All rights reserved",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service"
@@ -56,9 +56,9 @@
   "hero": {
     "badge": "Professional Translation Services",
     "title": "Welcome to",
-    "company": "T4Translation",
+    "company": "<strong>T4Translation</strong>",
     "slogan": "\"Quality – Short Turnarounds – Satisfaction – Customer Service\"",
-    "description": "We care for our clients; we listen to them; understand their needs and make sure they get excellent and flawless customer service. Customer satisfaction is our goal.",
+    "description": "We care for our clients, we listen to them, understand their needs and make sure they get excellent and flawless customer service. Customer satisfaction is our goal.",
     "getStarted": "Get Started",
     "viewServices": "View Services"
   },
@@ -78,7 +78,7 @@
     },
     "services": {
       "title": "Our Services",
-      "description": "T4Translation is a translation services portal which offers individuals, organizations, and businesses excellent translation and interpretation services using native-language professionals from several countries in a genuine effort to offer high-quality translations and other services.",
+      "description": "<strong>T4Translation</strong> is a translation services portal which offers individuals, organizations, and businesses excellent translation and interpretation services using native-language professionals from several countries in a genuine effort to offer high-quality translations and other services.",
       "categories": {
         "document": "Document",
         "business": "Business",
@@ -88,11 +88,11 @@
     },
     "vision": {
       "title": "Our Vision",
-      "description": "T4Translation is mindful of our diversity, and seeks to serve as a bridge between various distant interlocutors and clients by providing them with top-notch and timely services on a 24/7 basis.",
+      "description": "<strong>T4Translation</strong> is mindful of our diversity, and seeks to serve as a bridge between various distant interlocutors and clients by providing them with top-notch and timely services on a 24/7 basis.",
       "tagline": "Connecting Cultures, Bridging Languages"
     },
     "hero": {
-      "badge": "About T4Translation",
+      "badge": "About <strong>T4Translation</strong>",
       "title": "About Us",
       "subtitle": "Your trusted linguistic bridge connecting cultures and facilitating global communication with excellence since 2010",
       "scrollText": "Learn About Us"
@@ -168,7 +168,7 @@
   },
   "cta": {
     "title": "Ready to Bridge Languages?",
-    "subtitle": "Join thousands of satisfied clients who trust T4Translation for their linguistic needs. Let's start your translation journey today.",
+    "subtitle": "Join thousands of satisfied clients who trust <strong>T4Translation</strong> for their linguistic needs. Let's start your translation journey today.",
     "button": "Get Started Now"
   },
   "seo": {
@@ -223,7 +223,7 @@
       "interpretation": {
         "title": "Interpretation",
         "category": "Business",
-        "description": "T4Translation offers also interpretation services whether simultaneous or consecutive on as-needed basis.",
+        "description": "<strong>T4Translation</strong> offers also interpretation services whether simultaneous or consecutive on as-needed basis.",
         "features": [
           "Simultaneous Interpretation",
           "Consecutive Interpretation",
@@ -234,7 +234,7 @@
       "subtitling": {
         "title": "Subtitling, Transcription, Captioning",
         "category": "Document",
-        "description": "T4Translation offers also a wider array of services including: subtitling, transcription, and captioning services.",
+        "description": "<strong>T4Translation</strong> offers also a wider array of services including: subtitling, transcription, and captioning services.",
         "features": [
           "Video Subtitling",
           "Audio Transcription",
@@ -267,7 +267,7 @@
       "localization": {
         "title": "Localization",
         "category": "Business",
-        "description": "T4Translation is your perfect partner to ensure that your translated documents show the nuances that make them accurate in terms of text and intent. Our native speaker translators, linguists and reviewers are mindful of cultural nuances, idiosyncrasies and compliance issues. Thus, making your work bump-free, seamless and smooth.",
+        "description": "<strong>T4Translation</strong> is your perfect partner to ensure that your translated documents show the nuances that make them accurate in terms of text and intent. Our native speaker translators, linguists and reviewers are mindful of cultural nuances, idiosyncrasies and compliance issues. Thus, making your work bump-free, seamless and smooth.",
         "features": [
           "Cultural Adaptation",
           "Market Research",
@@ -306,7 +306,7 @@
       }
     },
     "whyChoose": {
-      "title": "Why Choose T4Translation?",
+      "title": "Why Choose <strong>T4Translation</strong>?",
       "subtitle": "Excellence, reliability, and cultural sensitivity in every project",
       "features": {
         "availability": {
@@ -430,7 +430,7 @@
   },
   "contact": {
     "hero": {
-      "badge": "Contact T4Translation",
+      "badge": "Contact <strong>T4Translation</strong>",
       "title": "Get In Touch",
       "subtitle": "Ready to break language barriers? Let's discuss your project and discover how we can help you communicate globally",
       "scrollText": "Start Conversation"

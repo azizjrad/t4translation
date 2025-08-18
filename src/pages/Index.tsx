@@ -22,7 +22,7 @@ const Index = () => {
   return (
     <>
       <SEO
-        title={t("seo.home.title")}
+        title="Home"
         description={t("seo.home.description")}
         keywords={t("seo.home.keywords")}
         canonicalUrl="https://t4translation.com"
@@ -67,7 +67,10 @@ const Index = () => {
                       itemScope
                       itemType="https://schema.org/Organization"
                     >
-                      <span itemProp="name">{t("hero.company")}</span>
+                      <span 
+                        itemProp="name"
+                        dangerouslySetInnerHTML={{ __html: t("hero.company") }}
+                      />
                     </span>
                   </h1>
                 </div>
@@ -221,9 +224,10 @@ const Index = () => {
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                   {t("about.mission.title")}
                 </h2>
-                <p className="text-xl text-gray-600 mb-6 leading-relaxed">
-                  {t("about.mission.description")}
-                </p>
+                <p 
+                  className="text-xl text-gray-600 mb-6 leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: t("about.mission.description") }}
+                />
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
                     <div className="w-3 h-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full"></div>
@@ -445,9 +449,10 @@ const Index = () => {
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                   {t("about.services.title")}
                 </h2>
-                <p className="text-xl text-gray-600 mb-6 leading-relaxed">
-                  {t("about.services.description")}
-                </p>
+                <p 
+                  className="text-xl text-gray-600 mb-6 leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: t("about.services.description") }}
+                />
 
                 {/* Interactive Service Buttons */}
                 <div className="flex flex-wrap gap-2 mb-8">
@@ -735,9 +740,10 @@ const Index = () => {
                   <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                     {t("about.vision.title")}
                   </h2>
-                  <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto">
-                    {t("about.vision.description")}
-                  </p>
+                  <p 
+                    className="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto"
+                    dangerouslySetInnerHTML={{ __html: t("about.vision.description") }}
+                  />
                   <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-600 text-white rounded-full shadow-lg">
                     <span className="font-semibold">
                       {t("about.vision.tagline")}
@@ -845,9 +851,10 @@ const Index = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
                 {t("cta.title")}
               </h2>
-              <p className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-90">
-                {t("cta.subtitle")}
-              </p>
+              <p 
+                className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-90"
+                dangerouslySetInnerHTML={{ __html: t("cta.subtitle") }}
+              />
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                 <Link
                   to="/get-started"

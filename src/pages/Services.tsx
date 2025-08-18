@@ -124,7 +124,7 @@ const Services = () => {
   return (
     <>
       <SEO
-        title={t("seo.services.title")}
+        title="Services"
         description={t("seo.services.description")}
         keywords={t("seo.services.keywords")}
         canonicalUrl="https://t4translation.com/services"
@@ -311,9 +311,10 @@ const Services = () => {
                               {service.title}
                             </h3>
 
-                            <p className="text-gray-600 leading-relaxed mb-6">
-                              {service.description}
-                            </p>
+                            <p 
+                              className="text-gray-600 leading-relaxed mb-6"
+                              dangerouslySetInnerHTML={{ __html: service.description }}
+                            />
 
                             {/* Features */}
                             <div className="grid grid-cols-2 gap-2 mb-6">
@@ -440,9 +441,10 @@ const Services = () => {
           <div className="absolute inset-0 bg-black/10"></div>
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 animate-fade-in-up">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                {t("services.whyChoose.title")}
-              </h2>
+              <h2 
+                className="text-4xl md:text-5xl font-bold mb-6"
+                dangerouslySetInnerHTML={{ __html: t("services.whyChoose.title") }}
+              />
               <p className="text-xl opacity-90 max-w-3xl mx-auto">
                 {t("services.whyChoose.subtitle")}
               </p>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
@@ -13,8 +13,28 @@ const LanguageToggle: React.FC<LanguageToggleProps> = ({
   variant = "default",
   className = "",
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { currentLanguage, changeLanguage } = useLanguage();
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    // Wait for i18n to be properly initialized
+    const checkReady = () => {
+      if (i18n.isInitialized && i18n.language) {
+        setIsReady(true);
+      }
+    };
+
+    if (i18n.isInitialized) {
+      checkReady();
+    } else {
+      i18n.on('initialized', checkReady);
+    }
+
+    return () => {
+      i18n.off('initialized', checkReady);
+    };
+  }, [i18n]);
 
   const toggleLanguage = () => {
     const newLanguage = currentLanguage === "en" ? "ar" : "en";
@@ -50,6 +70,27 @@ const LanguageToggle: React.FC<LanguageToggleProps> = ({
       />
     );
   };
+
+  // Show a default state while initializing
+  if (!isReady) {
+    return (
+      <Button
+        variant="ghost"
+        size="sm"
+        className={`flex items-center space-x-2 text-gray-700 hover:bg-blue-50 hover:!text-gray-800 transition-all duration-300 group ${variant === "mobile" ? "p-3 w-full justify-center" : "px-3 py-2"} ${className}`}
+        disabled
+      >
+        <img
+          src="/ar_flag.svg"
+          alt="Arabic Flag"
+          className="w-4 h-4 rounded-sm object-cover shadow-sm"
+        />
+        <span className="text-sm font-medium text-gray-700 group-hover:!text-gray-800">
+          AR
+        </span>
+      </Button>
+    );
+  }
 
   if (variant === "mobile") {
     return (

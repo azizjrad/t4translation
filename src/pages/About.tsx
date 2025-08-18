@@ -55,7 +55,7 @@ const About = () => {
   return (
     <>
       <SEO
-        title={t("seo.about.title")}
+        title="About"
         description={t("seo.about.description")}
         keywords={t("seo.about.keywords")}
         canonicalUrl="https://t4translation.com/about"
@@ -76,7 +76,7 @@ const About = () => {
             <div className="text-center space-y-8 animate-fade-in-up">
               <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm text-lg font-medium">
                 <Building2 className="w-5 h-5 mr-2" />
-                {t("about.hero.badge")}
+                <span dangerouslySetInnerHTML={{ __html: t("about.hero.badge") }} />
               </div>
 
               <h1 className="text-5xl md:text-7xl font-bold leading-tight">
@@ -533,18 +533,20 @@ const About = () => {
                     {t("about.mission.title")}
                   </span>
                 </h2>
-                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                  {t("about.mission.description")}
-                </p>
+                <p 
+                  className="text-lg text-gray-600 mb-8 leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: t("about.mission.description") }}
+                />
 
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
                   <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                     {t("about.vision.title")}
                   </span>
                 </h3>
-                <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                  {t("about.vision.description")}
-                </p>
+                <p 
+                  className="text-lg text-gray-600 leading-relaxed mb-8"
+                  dangerouslySetInnerHTML={{ __html: t("about.vision.description") }}
+                />
 
                 {/* Key Points */}
                 <div className="space-y-4">
