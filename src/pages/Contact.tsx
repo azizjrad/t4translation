@@ -183,7 +183,9 @@ const Contact = () => {
             <div className="text-center space-y-8 animate-fade-in-up">
               <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm text-lg font-medium">
                 <MessageSquare className="w-5 h-5 mr-2" />
-                <span dangerouslySetInnerHTML={{ __html: t("contact.hero.badge") }} />
+                <span
+                  dangerouslySetInnerHTML={{ __html: t("contact.hero.badge") }}
+                />
               </div>
 
               <h1 className="text-5xl md:text-7xl font-bold leading-tight">

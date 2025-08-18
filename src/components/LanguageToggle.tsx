@@ -28,11 +28,11 @@ const LanguageToggle: React.FC<LanguageToggleProps> = ({
     if (i18n.isInitialized) {
       checkReady();
     } else {
-      i18n.on('initialized', checkReady);
+      i18n.on("initialized", checkReady);
     }
 
     return () => {
-      i18n.off('initialized', checkReady);
+      i18n.off("initialized", checkReady);
     };
   }, [i18n]);
 
@@ -77,7 +77,9 @@ const LanguageToggle: React.FC<LanguageToggleProps> = ({
       <Button
         variant="ghost"
         size="sm"
-        className={`flex items-center space-x-2 text-gray-700 hover:bg-blue-50 hover:!text-gray-800 transition-all duration-300 group ${variant === "mobile" ? "p-3 w-full justify-center" : "px-3 py-2"} ${className}`}
+        className={`flex items-center space-x-2 text-gray-700 hover:bg-blue-50 hover:!text-gray-800 transition-all duration-300 group ${
+          variant === "mobile" ? "p-3 w-full justify-center" : "px-3 py-2"
+        } ${className}`}
         disabled
       >
         <img

@@ -67,7 +67,7 @@ const Index = () => {
                       itemScope
                       itemType="https://schema.org/Organization"
                     >
-                      <span 
+                      <span
                         itemProp="name"
                         dangerouslySetInnerHTML={{ __html: t("hero.company") }}
                       />
@@ -77,14 +77,11 @@ const Index = () => {
 
                 <div className="space-y-6">
                   <h2
-                    className="text-2xl md:text-3xl font-semibold text-blue-100"
+                    className="text-2xl md:text-3xl font-semibold text-blue-100 text-justify"
                     itemProp="slogan"
                   >
                     {t("hero.slogan")}
                   </h2>
-                  <p className="text-lg md:text-xl text-blue-100 leading-relaxed max-w-2xl">
-                    {t("hero.description")}
-                  </p>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 items-center">
@@ -118,59 +115,59 @@ const Index = () => {
               {/* Right Illustration */}
               <div className="relative animate-slide-in-right">
                 <div className="hero-illustration">
-                  <div className="relative w-full h-96 md:h-[500px]">
+                  <div className="relative w-full h-64 sm:h-80 md:h-96 lg:h-[500px]">
                     {/* Main Illustration Container */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="relative w-80 h-80">
+                      <div className="relative w-56 sm:w-64 md:w-72 lg:w-80 h-56 sm:h-64 md:h-72 lg:h-80">
                         {/* Left Orange Circle (Users) */}
-                        <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-8 w-24 h-24 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center shadow-2xl animate-bounce-slow z-10">
-                          <Users className="w-10 h-10 text-white" />
+                        <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 sm:-translate-x-6 md:-translate-x-8 w-16 sm:w-20 md:w-24 h-16 sm:h-20 md:h-24 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center shadow-2xl animate-bounce-slow z-10">
+                          <Users className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 text-white" />
                         </div>
 
                         {/* Right Green Circle (Translation) */}
-                        <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-8 w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-2xl animate-bounce-slow delay-300 z-10">
-                          <Languages className="w-10 h-10 text-white" />
+                        <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 sm:translate-x-6 md:translate-x-8 w-16 sm:w-20 md:w-24 h-16 sm:h-20 md:h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-2xl animate-bounce-slow delay-300 z-10">
+                          <Languages className="w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10 text-white" />
                         </div>
 
                         {/* Central Blue/Purple Globe */}
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-48 h-48 bg-gradient-to-br from-blue-500 via-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl animate-spin-slow relative z-20">
-                            <Globe className="w-20 h-20 text-white" />
+                          <div className="w-32 sm:w-36 md:w-40 lg:w-48 h-32 sm:h-36 md:h-40 lg:h-48 bg-gradient-to-br from-blue-500 via-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl animate-spin-slow relative z-20">
+                            <Globe className="w-12 sm:w-14 md:w-16 lg:w-20 h-12 sm:h-14 md:h-16 lg:h-20 text-white" />
                           </div>
                         </div>
 
                         {/* Language Bubbles */}
                         {/* Arabic Bubble - Top */}
-                        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-sm rounded-full px-4 py-2 shadow-xl animate-float z-30 border border-gray-100">
-                          <span className="text-sm font-semibold text-gray-800">
+                        <div className="absolute top-2 sm:top-4 left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-sm rounded-full px-2 sm:px-3 md:px-4 py-1 sm:py-2 shadow-xl animate-float z-30 border border-gray-100">
+                          <span className="text-xs sm:text-sm font-semibold text-gray-800">
                             عربي
                           </span>
                         </div>
 
                         {/* English Bubble - Bottom Left */}
-                        <div className="absolute bottom-4 left-8 bg-white/95 backdrop-blur-sm rounded-full px-4 py-2 shadow-xl animate-float delay-500 z-30 border border-gray-100">
-                          <span className="text-sm font-semibold text-gray-800">
+                        <div className="absolute bottom-2 sm:bottom-4 left-4 sm:left-6 md:left-8 bg-white/95 backdrop-blur-sm rounded-full px-2 sm:px-3 md:px-4 py-1 sm:py-2 shadow-xl animate-float delay-500 z-30 border border-gray-100">
+                          <span className="text-xs sm:text-sm font-semibold text-gray-800">
                             English
                           </span>
                         </div>
 
                         {/* French Bubble - Bottom Right */}
-                        <div className="absolute bottom-4 right-8 bg-white/95 backdrop-blur-sm rounded-full px-4 py-2 shadow-xl animate-float delay-1000 z-30 border border-gray-100">
-                          <span className="text-sm font-semibold text-gray-800">
+                        <div className="absolute bottom-2 sm:bottom-4 right-4 sm:right-6 md:right-8 bg-white/95 backdrop-blur-sm rounded-full px-2 sm:px-3 md:px-4 py-1 sm:py-2 shadow-xl animate-float delay-1000 z-30 border border-gray-100">
+                          <span className="text-xs sm:text-sm font-semibold text-gray-800">
                             Français
                           </span>
                         </div>
 
                         {/* Additional Language Bubbles */}
                         {/* Spanish Bubble - Right */}
-                        <div className="absolute right-2 top-16 bg-white/95 backdrop-blur-sm rounded-full px-3 py-1 shadow-lg animate-float delay-700 z-30 border border-gray-100">
+                        <div className="absolute right-1 sm:right-2 top-8 sm:top-12 md:top-16 bg-white/95 backdrop-blur-sm rounded-full px-2 sm:px-3 py-1 shadow-lg animate-float delay-700 z-30 border border-gray-100">
                           <span className="text-xs font-medium text-gray-700">
                             Español
                           </span>
                         </div>
 
                         {/* German Bubble - Left */}
-                        <div className="absolute left-2 top-20 bg-white/95 backdrop-blur-sm rounded-full px-3 py-1 shadow-lg animate-float delay-1200 z-30 border border-gray-100">
+                        <div className="absolute left-1 sm:left-2 top-10 sm:top-16 md:top-20 bg-white/95 backdrop-blur-sm rounded-full px-2 sm:px-3 py-1 shadow-lg animate-float delay-1200 z-30 border border-gray-100">
                           <span className="text-xs font-medium text-gray-700">
                             Deutsch
                           </span>
@@ -179,11 +176,11 @@ const Index = () => {
                     </div>
 
                     {/* Floating Decorative Elements */}
-                    <div className="absolute top-8 right-8 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full animate-float delay-200 opacity-70"></div>
-                    <div className="absolute bottom-12 left-12 w-4 h-4 bg-gradient-to-r from-pink-400 to-rose-400 rounded-full animate-float delay-700 opacity-70"></div>
-                    <div className="absolute top-1/2 left-4 w-3 h-3 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full animate-float delay-1200 opacity-70"></div>
-                    <div className="absolute top-1/4 right-6 w-5 h-5 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full animate-float delay-400 opacity-70"></div>
-                    <div className="absolute bottom-1/4 right-12 w-3 h-3 bg-gradient-to-r from-purple-400 to-violet-400 rounded-full animate-float delay-900 opacity-70"></div>
+                    <div className="absolute top-4 sm:top-6 md:top-8 right-4 sm:right-6 md:right-8 w-3 sm:w-4 md:w-6 h-3 sm:h-4 md:h-6 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full animate-float delay-200 opacity-70"></div>
+                    <div className="absolute bottom-6 sm:bottom-8 md:bottom-12 left-6 sm:left-8 md:left-12 w-2 sm:w-3 md:w-4 h-2 sm:h-3 md:h-4 bg-gradient-to-r from-pink-400 to-rose-400 rounded-full animate-float delay-700 opacity-70"></div>
+                    <div className="absolute top-1/2 left-2 sm:left-3 md:left-4 w-2 sm:w-3 h-2 sm:h-3 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full animate-float delay-1200 opacity-70"></div>
+                    <div className="absolute top-1/4 right-3 sm:right-4 md:right-6 w-3 sm:w-4 md:w-5 h-3 sm:h-4 md:h-5 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full animate-float delay-400 opacity-70"></div>
+                    <div className="absolute bottom-1/4 right-6 sm:right-8 md:right-12 w-2 sm:w-3 h-2 sm:h-3 bg-gradient-to-r from-purple-400 to-violet-400 rounded-full animate-float delay-900 opacity-70"></div>
                   </div>
                 </div>
               </div>
@@ -197,7 +194,7 @@ const Index = () => {
             {/* Who We Are - Right Side */}
             <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
               <div className="order-2 lg:order-1 animate-fade-in-left">
-                <div className="relative max-w-md mx-auto">
+                <div className="relative max-w-xs sm:max-w-sm md:max-w-md mx-auto">
                   <div className="absolute -inset-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl"></div>
                   <div className="relative overflow-hidden rounded-2xl shadow-xl">
                     <img
@@ -212,7 +209,7 @@ const Index = () => {
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                   {t("about.whoWeAre.title")}
                 </h2>
-                <p className="text-xl text-gray-600 mb-6 leading-relaxed">
+                <p className="text-xl text-gray-600 mb-6 leading-relaxed text-justify">
                   {t("about.whoWeAre.description")}
                 </p>
               </div>
@@ -224,9 +221,11 @@ const Index = () => {
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                   {t("about.mission.title")}
                 </h2>
-                <p 
+                <p
                   className="text-xl text-gray-600 mb-6 leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: t("about.mission.description") }}
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.mission.description"),
+                  }}
                 />
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
@@ -250,11 +249,12 @@ const Index = () => {
                 </div>
               </div>
               <div className="animate-fade-in-right">
-                <div className="relative max-w-md mx-auto">
+                <div className="relative max-w-xs sm:max-w-sm md:max-w-md mx-auto">
                   <div className="absolute -inset-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-2xl blur-xl"></div>
-                  <div className="relative overflow-hidden rounded-2xl shadow-xl bg-gradient-to-br from-green-50 to-emerald-50 p-8">
+                  <div className="relative overflow-hidden rounded-2xl shadow-xl bg-gradient-to-br from-green-50 to-emerald-50 p-6 sm:p-8">
                     {/* Mission SVG Illustration */}
                     <svg viewBox="0 0 400 300" className="w-full h-auto">
+                      {/* Keep the existing SVG content */}
                       {/* Background circles */}
                       <circle
                         cx="200"
@@ -430,7 +430,7 @@ const Index = () => {
             {/* Our Services - Right Side */}
             <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
               <div className="order-2 lg:order-1 animate-fade-in-left">
-                <div className="relative max-w-md mx-auto">
+                <div className="relative max-w-xs sm:max-w-sm md:max-w-md mx-auto">
                   <div
                     className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-2xl blur-xl transition-all duration-700"
                     id="service-background"
@@ -449,9 +449,11 @@ const Index = () => {
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                   {t("about.services.title")}
                 </h2>
-                <p 
+                <p
                   className="text-xl text-gray-600 mb-6 leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: t("about.services.description") }}
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.services.description"),
+                  }}
                 />
 
                 {/* Interactive Service Buttons */}
@@ -542,8 +544,9 @@ const Index = () => {
                 <div className="absolute -inset-8 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl blur-2xl"></div>
                 <div className="relative bg-white rounded-3xl p-12 shadow-2xl border border-gray-100">
                   {/* Vision SVG Illustration - Centered */}
-                  <div className="max-w-md mx-auto mb-8">
+                  <div className="max-w-xs sm:max-w-sm md:max-w-md mx-auto mb-8">
                     <svg viewBox="0 0 400 300" className="w-full h-auto">
+                      {/* Keep the existing SVG content */}
                       {/* Background elements */}
                       <circle
                         cx="200"
@@ -740,9 +743,11 @@ const Index = () => {
                   <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                     {t("about.vision.title")}
                   </h2>
-                  <p 
-                    className="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto"
-                    dangerouslySetInnerHTML={{ __html: t("about.vision.description") }}
+                  <p
+                    className="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto text-justify"
+                    dangerouslySetInnerHTML={{
+                      __html: t("about.vision.description"),
+                    }}
                   />
                   <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-600 text-white rounded-full shadow-lg">
                     <span className="font-semibold">
@@ -770,7 +775,7 @@ const Index = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {/* English */}
               <div className="group bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 text-center hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up delay-100">
-                <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden border-4 border-white shadow-lg">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden border-4 border-white shadow-lg">
                   {/* UK Flag */}
                   <img
                     src="/uk_flag.svg"
@@ -781,14 +786,14 @@ const Index = () => {
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">
                   {t("languagesList.items.english.title")}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 text-justify">
                   {t("languagesList.items.english.description")}
                 </p>
               </div>
 
               {/* French */}
               <div className="group bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 text-center hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up delay-200">
-                <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden border-4 border-white shadow-lg">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden border-4 border-white shadow-lg">
                   {/* French Flag */}
                   <div className="w-full h-full flex">
                     <div className="w-1/3 h-full bg-blue-600"></div>
@@ -799,14 +804,14 @@ const Index = () => {
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">
                   {t("languagesList.items.french.title")}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 text-justify">
                   {t("languagesList.items.french.description")}
                 </p>
               </div>
 
               {/* Arabic */}
               <div className="group bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 text-center hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up delay-300">
-                <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden border-4 border-white shadow-lg">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden border-4 border-white shadow-lg">
                   {/* Arabic Flag */}
                   <img
                     src="/ar_flag.png"
@@ -817,14 +822,14 @@ const Index = () => {
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">
                   {t("languagesList.items.arabic.title")}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 text-justify">
                   {t("languagesList.items.arabic.description")}
                 </p>
               </div>
 
               {/* German */}
               <div className="group bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 text-center hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up delay-400">
-                <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden border-4 border-white shadow-lg">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden border-4 border-white shadow-lg">
                   {/* German Flag */}
                   <div className="w-full h-full flex flex-col">
                     <div className="w-full h-1/3 bg-black"></div>
@@ -835,7 +840,7 @@ const Index = () => {
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">
                   {t("languagesList.items.german.title")}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 text-justify">
                   {t("languagesList.items.german.description")}
                 </p>
               </div>
@@ -851,8 +856,8 @@ const Index = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
                 {t("cta.title")}
               </h2>
-              <p 
-                className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-90"
+              <p
+                className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-90 text-justify"
                 dangerouslySetInnerHTML={{ __html: t("cta.subtitle") }}
               />
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">

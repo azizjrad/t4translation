@@ -57,8 +57,7 @@
     "badge": "Professional Translation Services",
     "title": "Welcome to",
     "company": "<strong>T4Translation</strong>",
-    "slogan": "\"Quality – Short Turnarounds – Satisfaction – Customer Service\"",
-    "description": "We care for our clients, we listen to them, understand their needs and make sure they get excellent and flawless customer service. Customer satisfaction is our goal.",
+    "slogan": "\"Excellence in Every Translation\"",
     "getStarted": "Get Started",
     "viewServices": "View Services"
   },
@@ -146,7 +145,7 @@
   },
   "languagesList": {
     "title": "Languages We Translate",
-    "subtitle": "Professional translation services across multiple languages with native-level expertise",
+    "subtitle": "Professional translation services across multiple languages",
     "items": {
       "english": {
         "title": "English",
@@ -322,7 +321,7 @@
           "description": "Rigorous quality control and review processes"
         },
         "languages": {
-          "title": "50+ Languages",
+          "title": "4+ Languages",
           "description": "Comprehensive coverage across major world languages"
         }
       }
@@ -331,7 +330,7 @@
       "title": "Ready to Get Started?",
       "subtitle": "Let's discuss your project requirements and provide you with a customized solution that meets your specific needs.",
       "primaryButton": "Get Started",
-      "secondaryButton": "Learn More About Us"
+      "secondaryButton": "Learn More"
     },
     "viewService": "View Service"
   },
@@ -339,7 +338,7 @@
     "hero": {
       "badge": "Specialized Industry Expertise",
       "title": "Industries We Serve",
-      "subtitle": "Our Government translation services ensure accurate and culturally sensitive communication across official documents, policies, and legal texts. We assist government agencies in effectively reaching diverse populations, ensuring compliance and clarity in all official languages",
+      "subtitle": "Professional translation services tailored to diverse industries with specialized expertise and cultural understanding.",
       "scrollText": "Explore Our Areas"
     },
     "grid": {

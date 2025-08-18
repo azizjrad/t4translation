@@ -76,7 +76,9 @@ const About = () => {
             <div className="text-center space-y-8 animate-fade-in-up">
               <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm text-lg font-medium">
                 <Building2 className="w-5 h-5 mr-2" />
-                <span dangerouslySetInnerHTML={{ __html: t("about.hero.badge") }} />
+                <span
+                  dangerouslySetInnerHTML={{ __html: t("about.hero.badge") }}
+                />
               </div>
 
               <h1 className="text-5xl md:text-7xl font-bold leading-tight">
@@ -533,9 +535,11 @@ const About = () => {
                     {t("about.mission.title")}
                   </span>
                 </h2>
-                <p 
+                <p
                   className="text-lg text-gray-600 mb-8 leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: t("about.mission.description") }}
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.mission.description"),
+                  }}
                 />
 
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
@@ -543,9 +547,11 @@ const About = () => {
                     {t("about.vision.title")}
                   </span>
                 </h3>
-                <p 
+                <p
                   className="text-lg text-gray-600 leading-relaxed mb-8"
-                  dangerouslySetInnerHTML={{ __html: t("about.vision.description") }}
+                  dangerouslySetInnerHTML={{
+                    __html: t("about.vision.description"),
+                  }}
                 />
 
                 {/* Key Points */}
@@ -708,10 +714,10 @@ const About = () => {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
-                { number: "50+", label: t("about.stats.languages") },
+                { number: "4+", label: t("about.stats.languages") },
                 { number: "10,000+", label: t("about.stats.projects") },
                 { number: "500+", label: t("about.stats.clients") },
-                { number: "14", label: t("about.stats.years") },
+                { number: "15", label: t("about.stats.years") },
               ].map((stat, index) => (
                 <div
                   key={index}

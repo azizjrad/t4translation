@@ -231,9 +231,11 @@ const Areas = () => {
                               {area.title}
                             </h3>
 
-                            <p 
+                            <p
                               className="text-gray-600 leading-relaxed mb-6"
-                              dangerouslySetInnerHTML={{ __html: area.description }}
+                              dangerouslySetInnerHTML={{
+                                __html: area.description,
+                              }}
                             />
 
                             {/* Features */}
